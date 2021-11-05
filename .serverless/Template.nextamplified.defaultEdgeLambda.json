@@ -1,0 +1,17 @@
+{
+  "name": "ineysga-yyrwf5",
+  "hash": "TwEmTgSw4EeBG5DyIjZWeJzVgaYF+NLYhAAzNlg75Y8=",
+  "description": "Default Lambda@Edge for Next CloudFront distribution",
+  "memory": 512,
+  "timeout": 10,
+  "code": "/Users/MichaelWatt/aws_next/amplify-next/.serverless_nextjs/default-lambda",
+  "shims": [],
+  "handler": "index.handler",
+  "runtime": "nodejs12.x",
+  "env": {},
+  "role": {
+    "arn": "arn:aws:iam::951828171550:role/ineysga-dojap88"
+  },
+  "arn": "arn:aws:lambda:us-east-1:951828171550:function:ineysga-yyrwf5",
+  "region": "us-east-1"
+}
