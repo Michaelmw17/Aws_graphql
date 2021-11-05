@@ -8,8 +8,13 @@
     "start": "next start"
   },
   "dependencies": {
+    "@aws-amplify/ui-react": "^1.2.22",
+    "aws-amplify": "^4.3.4",
     "next": "12.0.2",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-markdown": "^7.1.0",
+    "react-simplemde-editor": "^4.1.5",
+    "uuid": "^8.3.2"
   }
 }
