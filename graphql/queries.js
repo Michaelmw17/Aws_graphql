@@ -6,6 +6,7 @@ export const getPost = /* GraphQL */ `
     getPost(id: $id) {
       id
       title
+      category
       content
       username
       createdAt
@@ -23,6 +24,7 @@ export const listPosts = /* GraphQL */ `
       items {
         id
         title
+        category
         content
         username
         createdAt
@@ -50,6 +52,7 @@ export const postsByUsername = /* GraphQL */ `
       items {
         id
         title
+        category
         content
         username
         createdAt
