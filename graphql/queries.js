@@ -7,10 +7,10 @@ export const getPost = /* GraphQL */ `
       id
       title
       category
-      content
-      username
       createdAt
       updatedAt
+      content
+      username
     }
   }
 `;
@@ -25,10 +25,10 @@ export const listPosts = /* GraphQL */ `
         id
         title
         category
-        content
-        username
         createdAt
         updatedAt
+        content
+        username
       }
       nextToken
     }
@@ -53,10 +53,10 @@ export const postsByUsername = /* GraphQL */ `
         id
         title
         category
-        content
-        username
         createdAt
         updatedAt
+        content
+        username
       }
       nextToken
     }

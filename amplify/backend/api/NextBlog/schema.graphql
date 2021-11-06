@@ -3,10 +3,11 @@ type Post @model
   @auth(rules: [
     { allow: owner, ownerField: "username" },
     { allow: public, operations: [read] }
-  ]) {
+  ])  {
   id: ID!
   title: String!
   category: String!
+  createdAt:String!
   content: String!
   username: String
 }

@@ -7,10 +7,10 @@ export const onCreatePost = /* GraphQL */ `
       id
       title
       category
-      content
-      username
       createdAt
       updatedAt
+      content
+      username
     }
   }
 `;
@@ -20,10 +20,10 @@ export const onUpdatePost = /* GraphQL */ `
       id
       title
       category
-      content
-      username
       createdAt
       updatedAt
+      content
+      username
     }
   }
 `;
@@ -33,10 +33,10 @@ export const onDeletePost = /* GraphQL */ `
       id
       title
       category
-      content
-      username
       createdAt
       updatedAt
+      content
+      username
     }
   }
 `;

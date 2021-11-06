@@ -6,20 +6,19 @@ import { useRouter } from 'next/router'
 import SimpleMDE from "react-simplemde-editor"
 import "easymde/dist/easymde.min.css"
 import { createPost } from '../graphql/mutations'
-// import CountrySelect from '../components/Autocomplete'
-// import DateTimePickers from '../components/DataPicker'
-const initialState = { title: '', content: '', category: '' }
+import CountrySelect from '../components/Autocomplete'
+const initialState = { title: '', content: '', category: '', createdAt: new Date().toISOString() }
 
 function CreatePost() {
   const [post, setPost] = useState(initialState)
   const hiddenFileInput = useRef(null);
-  const { title, content, category } = post
+  const { title, content, category, createdAt } = post
   const router = useRouter()
   function onChange(e) {
     setPost(() => ({ ...post, [e.target.name]: e.target.value }))
   }
   async function createNewPost() {
-    if (!title || !content || !category) return
+    if (!title || !content || !category || !createdAt) return
     const id = uuid() 
     post.id = id
     await API.graphql({
@@ -47,19 +46,19 @@ function CreatePost() {
         className="border-b pb-2 text-lg my-4 focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2"
       />
       {/* <CountrySelect
-        onChange={onChange}
+        onChange={value => setPost({ ...post, country: value })}
         name="country"
         placeholder="Author Country"
-        value={post.  }
+        value={post.country}
         className="border-b pb-2 text-lg my-4 focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2"
-      /> 
-      <DateTimePickers
+      />  */}
+      <input
         onChange={onChange}
-        name="created"
+        name="createdAt"
         placeholder="Time created"
-        value={post.created}
-        className="border-b pb-2 text-lg my-4 focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2"
-      /> */}
+        value={post.createdAt}
+        className="invisible"
+      />
       <SimpleMDE value={post.content} onChange={value => setPost({ ...post, content: value })} />
       <button
         type="button"

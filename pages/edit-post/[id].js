@@ -26,11 +26,11 @@ function EditPost() {
     function onChange(e) {
         setPost(() => ({ ...post, [e.target.name]: e.target.value }))
     }
-    const { title, content, category } = post
+    const { title, content, category, createdAt } = post
     async function updateCurrentPost() {
-        if (!title || !content || !category ) return
+        if (!title || !content || !category || !createdAt ) return
         const postUpdated = {
-        id, content, title, category
+        id, content, title, category, createdAt
         }
         await API.graphql({
         query: updatePost,
@@ -63,14 +63,15 @@ function EditPost() {
             placeholder="Author country"
             value={post.country}
             className="border-b pb-2 text-lg my-4 focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2"
-        /> 
+        />  */}
         <input
+            type="hidden"
             onChange={onChange}
             name="created"
             placeholder="Time created"
-            value={post.created}
+            value={post.createdAt}
             className="border-b pb-2 text-lg my-4 focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2"
-        />  */}
+        /> 
         <SimpleMDE value={post.content} onChange={value => setPost({ ...post, content: value })} />
         {/* <input
             type="file"
