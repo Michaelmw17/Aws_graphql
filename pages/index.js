@@ -13,6 +13,14 @@ export default function Home() {
       query: listPosts
     })
     const { items } = postData.data.listPosts
+    // Fetch images from S3 for posts that contain a cover image
+    const postsWithImages = await Promise.all(items.map(async post => {
+      if (post.coverImage) {
+        post.coverImage = await Storage.get(post.coverImage)
+      }
+      return post
+    }))
+    setPosts(postsWithImages)
   }
   return (
     <div>
@@ -23,6 +31,9 @@ export default function Home() {
           <div className="my-6 pb-6 border-b border-gray-300	">
             <div className="cursor-pointer mt-2">
               <h2 className="text-xl font-semibold">{post.title}</h2>
+              <h2 className="text-xl font-semibold">{post.category}</h2>
+              {/* <h2 className="text-xl font-semibold">{post.country}</h2>
+              <h2 className="text-xl font-semibold">{post.created}</h2> */}
               <p className="text-gray-500 mt-2">Author: {post.username}</p>
             </div>
           </div>

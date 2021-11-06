@@ -26,11 +26,11 @@ function EditPost() {
     function onChange(e) {
         setPost(() => ({ ...post, [e.target.name]: e.target.value }))
     }
-    const { title, content } = post
+    const { title, content, category } = post
     async function updateCurrentPost() {
-        if (!title || !content) return
+        if (!title || !content || !category ) return
         const postUpdated = {
-        id, content, title
+        id, content, title, category
         }
         await API.graphql({
         query: updatePost,
@@ -50,13 +50,34 @@ function EditPost() {
             value={post.title}
             className="border-b pb-2 text-lg my-4 focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2"
         /> 
-        <SimpleMDE value={post.content} onChange={value => setPost({ ...post, content: value })} />
         <input
+            onChange={onChange}
+            name="category"
+            placeholder="Author Category"
+            value={post.category}
+            className="border-b pb-2 text-lg my-4 focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2"
+        /> 
+        {/* <input
+            onChange={onChange}
+            name="country"
+            placeholder="Author country"
+            value={post.country}
+            className="border-b pb-2 text-lg my-4 focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2"
+        /> 
+        <input
+            onChange={onChange}
+            name="created"
+            placeholder="Time created"
+            value={post.created}
+            className="border-b pb-2 text-lg my-4 focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2"
+        />  */}
+        <SimpleMDE value={post.content} onChange={value => setPost({ ...post, content: value })} />
+        {/* <input
             type="file"
             ref={fileInput}
             className="absolute w-0 h-0"
             onChange={handleChange}
-        />
+        /> */}
         <button
             className="mb-4 bg-blue-600 text-white font-semibold px-8 py-2 rounded-lg"
             onClick={updateCurrentPost}>Update Post</button>

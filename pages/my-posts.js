@@ -16,7 +16,9 @@ export default function MyPosts() {
         query: postsByUsername,
         variables: { username }
     })
-    setPosts(postData.data.postsByUsername.items)
+    setPosts(postData.data.postsByUsername.items);
+    console.log('console', postData.data.postsByUsername.items);
+    
     }
     async function deletePost(id) {
     await API.graphql({
@@ -32,8 +34,11 @@ export default function MyPosts() {
         {
         posts.map((post, index) => (
             <div key={index} className="border-b border-gray-300	mt-8 pb-4">
-            <h2 className="text-xl font-semibold">{post.title}</h2>
+            <h2 className="text-xl font-semibold">Title: {post.title}</h2>
             <p className="text-gray-500 mt-2 mb-2">Author: {post.username}</p>
+            <h2 className="text-xl font-semibold">Author's  Category: {post.category}</h2>
+            {/* <h2 className="text-xl font-semibold">Author's  Country: {post.country}</h2>
+            <h2 className="text-xl font-semibold">Time Created: {post.created}</h2> */}
             <Link href={`/edit-post/${post.id}`}><a className="text-sm mr-4 text-blue-500">Edit Post</a></Link>
             <Link href={`/posts/${post.id}`}><a className="text-sm mr-4 text-blue-500">View Post</a></Link>
             <button
