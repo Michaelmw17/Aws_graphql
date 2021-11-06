@@ -32,8 +32,10 @@ export default function Home() {
             <div className="cursor-pointer mt-2">
               <h2 className="text-xl font-semibold">{post.title}</h2>
               <h2 className="text-xl font-semibold">{post.category}</h2>
-              {/* <h2 className="text-xl font-semibold">{post.country}</h2>
-              <h2 className="text-xl font-semibold">{post.created}</h2> */}
+              {/* <h2 className="text-xl font-semibold">{post.country}</h2> */}
+              {/* <h2 className="text-xl font-semibold">{post.createdAt}</h2> */}
+              <time dateTime={post.createdAt}>
+                    {new Date(post.createdAt).toDateString()}</time>
               <p className="text-gray-500 mt-2">Author: {post.username}</p>
             </div>
           </div>

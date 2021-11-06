@@ -14,8 +14,10 @@ export default function Post({ post }) {
         <div>
         <h1 className="text-5xl mt-4 font-semibold tracking-wide">{post.title}</h1>
         <h1 className="text-5xl mt-4 font-semibold tracking-wide">{post.category}</h1>
-        {/* <h1 className="text-5xl mt-4 font-semibold tracking-wide">{post.country}</h1>
-        <h1 className="text-5xl mt-4 font-semibold tracking-wide">{post.created}</h1> */}
+        {/* <h1 className="text-5xl mt-4 font-semibold tracking-wide">{post.country}</h1> */}
+        <time dateTime={post.createdAt}>
+                    {new Date(post.createdAt).toDateString()}</time>
+        {/* <h1 className="text-5xl mt-4 font-semibold tracking-wide">{post.createdAt}</h1> */}
         <p className="text-sm font-light my-4">by {post.username}</p>
         <div className="mt-8">
             <ReactMarkdown className='prose' children={post.content} />

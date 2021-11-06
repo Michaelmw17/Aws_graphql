@@ -5,7 +5,7 @@ exports.id = 646;
 exports.ids = [646];
 exports.modules = {
 
-/***/ 33034:
+/***/ 28783:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -99,11 +99,11 @@ __webpack_require__.r(__webpack_exports__);
         rewrites: combinedRewrites,
         i18n: undefined,
         page: "/posts/[id]",
-        buildId: "PvOW51yPOmBEFB_wmKXt3",
-        escapedBuildId: "PvOW51yPOmBEFB_wmKXt3",
+        buildId: "erqNIlWuPHUZyuWk8SzX_",
+        escapedBuildId: "erqNIlWuPHUZyuWk8SzX_",
         basePath: "",
         pageIsDynamic: true,
-        encodedPreviewProps: {previewModeId:"15159ddf6ab26669a2a8f89c470e774a",previewModeSigningKey:"e85db4cce7d2fc72bfea133091c18f8b668e9bb2b61b2fed78b07b530b5b89ae",previewModeEncryptionKey:"618b0b7373fc10fea859da3597e52965f93ffadd53ccb50e8dcc6cf93176aa51"}
+        encodedPreviewProps: {previewModeId:"28d6c1da2453dbcfa7797a47a8c5fcb0",previewModeSigningKey:"7e289173b2477e33c82d7579f3b0c7d7f64e4c04773a60d88b5dc50b81157912",previewModeEncryptionKey:"dca1eb76d2ce191d20afbe3ad8ac887afb3346792d009d264288cc5d952b7c48"}
       })
       
     
@@ -145,6 +145,14 @@ function Post({ post  }) {
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
                 className: "text-5xl mt-4 font-semibold tracking-wide",
                 children: post.title
+            }),
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
+                className: "text-5xl mt-4 font-semibold tracking-wide",
+                children: post.category
+            }),
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("time", {
+                dateTime: post.createdAt,
+                children: new Date(post.createdAt).toDateString()
             }),
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
                 className: "text-sm font-light my-4",
@@ -358,7 +366,7 @@ module.exports = require("zlib");
 var __webpack_require__ = require("../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [476,162,640,788], () => (__webpack_exec__(33034)));
+var __webpack_exports__ = __webpack_require__.X(0, [476,162,640,788], () => (__webpack_exec__(28783)));
 module.exports = __webpack_exports__;
 
 })();
