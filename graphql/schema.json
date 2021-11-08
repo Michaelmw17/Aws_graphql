@@ -187,24 +187,32 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "createdAt",
+          "name" : "countries",
           "description" : null,
           "args" : [ ],
           "type" : {
-            "kind" : "SCALAR",
-            "name" : "AWSDateTime",
-            "ofType" : null
+            "kind" : "NON_NULL",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            }
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "updatedAt",
+          "name" : "createdAt",
           "description" : null,
           "args" : [ ],
           "type" : {
-            "kind" : "SCALAR",
-            "name" : "AWSDateTime",
-            "ofType" : null
+            "kind" : "NON_NULL",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            }
           },
           "isDeprecated" : false,
           "deprecationReason" : null
@@ -231,6 +239,21 @@
             "kind" : "SCALAR",
             "name" : "String",
             "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "updatedAt",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "NON_NULL",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "AWSDateTime",
+              "ofType" : null
+            }
           },
           "isDeprecated" : false,
           "deprecationReason" : null
@@ -334,7 +357,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "createdAt",
+          "name" : "countries",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -343,7 +366,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "updatedAt",
+          "name" : "createdAt",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -989,20 +1012,24 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "countries",
+          "description" : null,
+          "type" : {
+            "kind" : "NON_NULL",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            }
+          },
+          "defaultValue" : null
+        }, {
           "name" : "createdAt",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
-            "name" : "AWSDateTime",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "updatedAt",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "AWSDateTime",
+            "name" : "String",
             "ofType" : null
           },
           "defaultValue" : null
@@ -1056,7 +1083,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "createdAt",
+          "name" : "countries",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -1065,7 +1092,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "updatedAt",
+          "name" : "createdAt",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -1158,20 +1185,20 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "createdAt",
+          "name" : "countries",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
-            "name" : "AWSDateTime",
+            "name" : "String",
             "ofType" : null
           },
           "defaultValue" : null
         }, {
-          "name" : "updatedAt",
+          "name" : "createdAt",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
-            "name" : "AWSDateTime",
+            "name" : "String",
             "ofType" : null
           },
           "defaultValue" : null
@@ -2351,6 +2378,23 @@
         "onFragment" : false,
         "onField" : false
       }, {
+        "name" : "deprecated",
+        "description" : null,
+        "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
+        "args" : [ {
+          "name" : "reason",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : "\"No longer supported\""
+        } ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
         "name" : "aws_cognito_user_pools",
         "description" : "Tells the service this field/object has access authorized by a Cognito User Pools token.",
         "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
@@ -2405,23 +2449,6 @@
         "description" : "Tells the service this field/object has access authorized by sigv4 signing.",
         "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
         "args" : [ ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
-        "name" : "deprecated",
-        "description" : null,
-        "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
-        "args" : [ {
-          "name" : "reason",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "defaultValue" : "\"No longer supported\""
-        } ],
         "onOperation" : false,
         "onFragment" : false,
         "onField" : false

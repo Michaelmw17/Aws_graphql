@@ -6,22 +6,23 @@ import { listPosts, getPost } from '../../graphql/queries'
 
 export default function Post({ post }) {
     console.log('post: ', post)
+    console.log('post: ', post.countries[0])
     const router = useRouter()
     if (router.isFallback) {
         return <div>Loading...</div>
     }
     return (
         <div>
-        <h1 className="text-5xl mt-4 font-semibold tracking-wide">{post.title}</h1>
-        <h1 className="text-5xl mt-4 font-semibold tracking-wide">{post.category}</h1>
-        {/* <h1 className="text-5xl mt-4 font-semibold tracking-wide">{post.country}</h1> */}
-        <time dateTime={post.createdAt}>
-                    {new Date(post.createdAt).toDateString()}</time>
-        {/* <h1 className="text-5xl mt-4 font-semibold tracking-wide">{post.createdAt}</h1> */}
-        <p className="text-sm font-light my-4">by {post.username}</p>
-        <div className="mt-8">
-            <ReactMarkdown className='prose' children={post.content} />
+        <h1 className="text-5xl mt-4 font-semibold tracking-wide">Title: {post.title}</h1>
+        <h4 className="text-3xl mt-4 font-semibold tracking-wide">Category: {post.category}</h4>
+        <div className="m-8">
+            Content: <ReactMarkdown className='prose' children={post.content} />
         </div>
+        {/* <div>label: {countries ? countries.label : ""}</div> */}
+        <time dateTime={post.createdAt}>
+        <p className="text-1xl mt-4 font-semibold tracking-wide">Author's Country: {post.countries }</p>
+        <p className="text-sm font-semibold my-4">Author:  {post.username}</p>
+                Date created at: {new Date(post.createdAt).toDateString()}</time>
         </div>
     )
     }

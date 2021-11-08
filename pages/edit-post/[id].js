@@ -6,7 +6,22 @@ import "easymde/dist/easymde.min.css"
 import { v4 as uuid } from 'uuid'
 import { updatePost } from '../../graphql/mutations'
 import { getPost } from '../../graphql/queries'
-
+import MySelect from '../../components/Autocomplete'
+import { countries} from '../../components/Autocomplete'
+const options  = [
+  {
+    label: "Australia"
+  },
+  {
+    label: "New Zealand"
+  },
+  {
+    label: "USA"
+  },
+  {
+    label: "Italy"
+  }
+];
 function EditPost() {
     const [post, setPost] = useState(null)
     const router = useRouter()
@@ -44,11 +59,11 @@ function EditPost() {
         <div>
         <h1 className="text-3xl font-semibold tracking-wide mt-6 mb-2">Edit post</h1>
         <input
-            onChange={onChange}
-            name="title"
-            placeholder="Title"
-            value={post.title}
-            className="border-b pb-2 text-lg my-4 focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2"
+        onChange={onChange}
+        name="title"
+        placeholder="Title"
+        value={post.title}
+        className="border-b pb-2 text-lg my-4 focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2"
         /> 
         <input
             onChange={onChange}
@@ -56,29 +71,16 @@ function EditPost() {
             placeholder="Author Category"
             value={post.category}
             className="border-b pb-2 text-lg my-4 focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2"
-        /> 
-        {/* <input
-            onChange={onChange}
-            name="country"
-            placeholder="Author country"
-            value={post.country}
-            className="border-b pb-2 text-lg my-4 focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2"
-        />  */}
-        <input
-            type="hidden"
-            onChange={onChange}
-            name="created"
-            placeholder="Time created"
-            value={post.createdAt}
-            className="border-b pb-2 text-lg my-4 focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2"
-        /> 
+        />
+        <MySelect
+            options={options}
+            name="countries"
+            onChange={value => setPost({ ...post, countries: value })}
+            value= {post.countries.label}
+            />
+            {/* <div>label: {post.countries ? countries.label : ""}</div> */}
         <SimpleMDE value={post.content} onChange={value => setPost({ ...post, content: value })} />
-        {/* <input
-            type="file"
-            ref={fileInput}
-            className="absolute w-0 h-0"
-            onChange={handleChange}
-        /> */}
+        
         <button
             className="mb-4 bg-blue-600 text-white font-semibold px-8 py-2 rounded-lg"
             onClick={updateCurrentPost}>Update Post</button>
