@@ -7,10 +7,11 @@ export const onCreatePost = /* GraphQL */ `
       id
       title
       category
+      countries
       createdAt
-      updatedAt
       content
       username
+      updatedAt
     }
   }
 `;
@@ -20,10 +21,11 @@ export const onUpdatePost = /* GraphQL */ `
       id
       title
       category
+      countries
       createdAt
-      updatedAt
       content
       username
+      updatedAt
     }
   }
 `;
@@ -33,10 +35,11 @@ export const onDeletePost = /* GraphQL */ `
       id
       title
       category
+      countries
       createdAt
-      updatedAt
       content
       username
+      updatedAt
     }
   }
 `;

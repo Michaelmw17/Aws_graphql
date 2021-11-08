@@ -7,10 +7,11 @@ export const getPost = /* GraphQL */ `
       id
       title
       category
+      countries
       createdAt
-      updatedAt
       content
       username
+      updatedAt
     }
   }
 `;
@@ -25,10 +26,11 @@ export const listPosts = /* GraphQL */ `
         id
         title
         category
+        countries
         createdAt
-        updatedAt
         content
         username
+        updatedAt
       }
       nextToken
     }
@@ -53,10 +55,11 @@ export const postsByUsername = /* GraphQL */ `
         id
         title
         category
+        countries
         createdAt
-        updatedAt
         content
         username
+        updatedAt
       }
       nextToken
     }
