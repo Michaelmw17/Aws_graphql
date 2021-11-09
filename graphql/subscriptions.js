@@ -8,6 +8,8 @@ export const onCreatePost = /* GraphQL */ `
       title
       category
       countries
+      select
+      date
       createdAt
       content
       username
@@ -22,6 +24,8 @@ export const onUpdatePost = /* GraphQL */ `
       title
       category
       countries
+      select
+      date
       createdAt
       content
       username
@@ -36,6 +40,8 @@ export const onDeletePost = /* GraphQL */ `
       title
       category
       countries
+      select
+      date
       createdAt
       content
       username

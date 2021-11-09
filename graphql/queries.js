@@ -8,6 +8,8 @@ export const getPost = /* GraphQL */ `
       title
       category
       countries
+      select
+      date
       createdAt
       content
       username
@@ -27,6 +29,8 @@ export const listPosts = /* GraphQL */ `
         title
         category
         countries
+        select
+        date
         createdAt
         content
         username
@@ -56,6 +60,8 @@ export const postsByUsername = /* GraphQL */ `
         title
         category
         countries
+        select
+        date
         createdAt
         content
         username

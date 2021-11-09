@@ -7,3 +7,6 @@
   --amplify-primary-tint: #5185f4;
   --amplify-primary-shade: #5185f4;
 }
+.alert {
+  color: #ff4242;
+}

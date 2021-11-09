@@ -5,7 +5,7 @@ exports.id = 646;
 exports.ids = [646];
 exports.modules = {
 
-/***/ 28783:
+/***/ 27334:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 
       const documentModule = __webpack_require__(23105)
 
-      const appMod = __webpack_require__(71884)
+      const appMod = __webpack_require__(78140)
       let App = appMod.default || appMod.then && appMod.then(mod => mod.default);
 
       const compMod = __webpack_require__(99955)
@@ -99,11 +99,11 @@ __webpack_require__.r(__webpack_exports__);
         rewrites: combinedRewrites,
         i18n: undefined,
         page: "/posts/[id]",
-        buildId: "erqNIlWuPHUZyuWk8SzX_",
-        escapedBuildId: "erqNIlWuPHUZyuWk8SzX_",
+        buildId: "ZZN49eQiwQv17i5j6G09H",
+        escapedBuildId: "ZZN49eQiwQv17i5j6G09H",
         basePath: "",
         pageIsDynamic: true,
-        encodedPreviewProps: {previewModeId:"28d6c1da2453dbcfa7797a47a8c5fcb0",previewModeSigningKey:"7e289173b2477e33c82d7579f3b0c7d7f64e4c04773a60d88b5dc50b81157912",previewModeEncryptionKey:"dca1eb76d2ce191d20afbe3ad8ac887afb3346792d009d264288cc5d952b7c48"}
+        encodedPreviewProps: {previewModeId:"44b756ca2d959245bc6494a14ffdfe56",previewModeSigningKey:"830f2dbc99149aa474fcf1a87afe78d1ef555e6934f3fa0323033effa0d0615c",previewModeEncryptionKey:"c30c33f5e8700d9fd96ac24bbae296541268c6f89765a72a3c597e8d7dc70dc8"}
       })
       
     
@@ -134,6 +134,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function Post({ post  }) {
     console.log('post: ', post);
+    // console.log('post: ', post.countries[0])
     const router = (0,next_router__WEBPACK_IMPORTED_MODULE_2__.useRouter)();
     if (router.isFallback) {
         return(/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
@@ -142,31 +143,66 @@ function Post({ post  }) {
     }
     return(/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
         children: [
-            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
+            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h1", {
                 className: "text-5xl mt-4 font-semibold tracking-wide",
-                children: post.title
-            }),
-            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
-                className: "text-5xl mt-4 font-semibold tracking-wide",
-                children: post.category
-            }),
-            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("time", {
-                dateTime: post.createdAt,
-                children: new Date(post.createdAt).toDateString()
-            }),
-            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
-                className: "text-sm font-light my-4",
                 children: [
-                    "by ",
-                    post.username
+                    "Title: ",
+                    post.title
                 ]
             }),
-            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                className: "mt-8",
-                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_markdown__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, {
-                    className: "prose",
-                    children: post.content
-                })
+            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h4", {
+                className: "text-3xl mt-4 font-semibold tracking-wide",
+                children: [
+                    "Category: ",
+                    post.category
+                ]
+            }),
+            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
+                className: "text-1xl mt-4 font-semibold tracking-wide",
+                children: [
+                    "Selected Blog Category: ",
+                    post.select
+                ]
+            }),
+            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                className: "m-8",
+                children: [
+                    "Content: ",
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_markdown__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, {
+                        className: "prose",
+                        children: post.content
+                    })
+                ]
+            }),
+            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("time", {
+                dateTime: post.createdAt,
+                children: [
+                    "Blog gerenated date created at: ",
+                    new Date(post.createdAt).toDateString()
+                ]
+            }),
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("br", {
+            }),
+            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("time", {
+                dateTime: post.date,
+                children: [
+                    "User date created at: ",
+                    new Date(post.date).toDateString()
+                ]
+            }),
+            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
+                className: "text-1xl mt-4 font-semibold tracking-wide",
+                children: [
+                    "Author's Country: ",
+                    post.countries
+                ]
+            }),
+            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
+                className: "text-sm font-semibold my-4",
+                children: [
+                    "Author: ",
+                    post.username
+                ]
             })
         ]
     }));
@@ -366,7 +402,7 @@ module.exports = require("zlib");
 var __webpack_require__ = require("../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [476,162,640,788], () => (__webpack_exec__(28783)));
+var __webpack_exports__ = __webpack_require__.X(0, [476,697,162,615,788], () => (__webpack_exec__(27334)));
 module.exports = __webpack_exports__;
 
 })();

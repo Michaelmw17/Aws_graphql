@@ -8,6 +8,8 @@ type Post @model
   title: String!
   category: String!
   countries: String!
+  select: String!
+  date: String!
   createdAt: String!
   content: String!
   username: String
