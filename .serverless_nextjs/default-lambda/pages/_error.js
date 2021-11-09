@@ -5,7 +5,7 @@ exports.id = 820;
 exports.ids = [820];
 exports.modules = {
 
-/***/ 63818:
+/***/ 24007:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 
       const documentModule = __webpack_require__(23105)
 
-      const appMod = __webpack_require__(71884)
+      const appMod = __webpack_require__(78140)
       let App = appMod.default || appMod.then && appMod.then(mod => mod.default);
 
       const compMod = __webpack_require__(89185)
@@ -99,11 +99,11 @@ __webpack_require__.r(__webpack_exports__);
         rewrites: combinedRewrites,
         i18n: undefined,
         page: "/_error",
-        buildId: "erqNIlWuPHUZyuWk8SzX_",
-        escapedBuildId: "erqNIlWuPHUZyuWk8SzX_",
+        buildId: "ZZN49eQiwQv17i5j6G09H",
+        escapedBuildId: "ZZN49eQiwQv17i5j6G09H",
         basePath: "",
         pageIsDynamic: false,
-        encodedPreviewProps: {previewModeId:"28d6c1da2453dbcfa7797a47a8c5fcb0",previewModeSigningKey:"7e289173b2477e33c82d7579f3b0c7d7f64e4c04773a60d88b5dc50b81157912",previewModeEncryptionKey:"dca1eb76d2ce191d20afbe3ad8ac887afb3346792d009d264288cc5d952b7c48"}
+        encodedPreviewProps: {previewModeId:"44b756ca2d959245bc6494a14ffdfe56",previewModeSigningKey:"830f2dbc99149aa474fcf1a87afe78d1ef555e6934f3fa0323033effa0d0615c",previewModeEncryptionKey:"c30c33f5e8700d9fd96ac24bbae296541268c6f89765a72a3c597e8d7dc70dc8"}
       })
       
     
@@ -271,7 +271,7 @@ module.exports = require("zlib");
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [476,640], () => (__webpack_exec__(63818)));
+var __webpack_exports__ = __webpack_require__.X(0, [476,615], () => (__webpack_exec__(24007)));
 module.exports = __webpack_exports__;
 
 })();

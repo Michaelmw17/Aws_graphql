@@ -3,8 +3,9 @@ import '../configAmplify.js'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { Auth, Hub } from 'aws-amplify'
+import { AppProps } from 'next/app'
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: AppProps) {
   const [signedInUser, setSignedInUser] = useState(false)
   useEffect(() => {
     authListener()
@@ -25,7 +26,7 @@ function MyApp({ Component, pageProps }) {
   }
   return (
   <div>
-    <nav className="p-6 border-b border-gray-300">
+    <nav className="p-16 border-b border-gray-300">
       <Link href="/">
         <span className="mr-6 cursor-pointer">Latest Article Page</span>
       </Link>

@@ -7,21 +7,8 @@ import { v4 as uuid } from 'uuid'
 import { updatePost } from '../../graphql/mutations'
 import { getPost } from '../../graphql/queries'
 import MySelect from '../../components/Autocomplete'
-import { countries} from '../../components/Autocomplete'
-const options  = [
-  {
-    label: "Australia"
-  },
-  {
-    label: "New Zealand"
-  },
-  {
-    label: "USA"
-  },
-  {
-    label: "Italy"
-  }
-];
+// import { countries} from '../../components/Autocomplete'
+
 function EditPost() {
     const [post, setPost] = useState(null)
     const router = useRouter()
@@ -72,12 +59,25 @@ function EditPost() {
             value={post.category}
             className="border-b pb-2 text-lg my-4 focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2"
         />
-        <MySelect
-            options={options}
-            name="countries"
-            onChange={value => setPost({ ...post, countries: value })}
-            value= {post.countries.label}
-            />
+        <div className="mt-2 mb-2">
+         <MySelect
+          options={options}
+          name="countries"
+          onChange={onChange => setPost({ ...post, countries: onChange.value })}
+          value= {post.countries}
+          className="m-6"
+          placeholder="Countries Select..."
+        />
+            </div>
+            <div className="mt-2 mb-2">
+            <MySelect
+          options={selectCategoryOptions}
+          name="select"
+          onChange={onChange => setPost({ ...post, select: onChange })}
+          value= {post.select}
+          className="m-6"
+        />
+        </div>
             {/* <div>label: {post.countries ? countries.label : ""}</div> */}
         <SimpleMDE value={post.content} onChange={value => setPost({ ...post, content: value })} />
         
@@ -87,5 +87,33 @@ function EditPost() {
         </div>
     )
 }
+const options  = [
+  {
+    label: "Australia"
+  },
+  {
+    label: "New Zealand"
+  },
+  {
+    label: "USA"
+  },
+  {
+    label: "Italy"
+  }
+];
+const selectCategoryOptions  = [
+  {
+    label: "Sport"
+  },
+  {
+    label: "News"
+  },
+  {
+    label: "Weather"
+  },
+  {
+    label: "Other"
+  }
+];
 
 export default EditPost 
