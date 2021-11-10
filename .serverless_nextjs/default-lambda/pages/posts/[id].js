@@ -5,7 +5,7 @@ exports.id = 646;
 exports.ids = [646];
 exports.modules = {
 
-/***/ 27334:
+/***/ 24797:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 
       const documentModule = __webpack_require__(23105)
 
-      const appMod = __webpack_require__(78140)
+      const appMod = __webpack_require__(85250)
       let App = appMod.default || appMod.then && appMod.then(mod => mod.default);
 
       const compMod = __webpack_require__(99955)
@@ -99,11 +99,11 @@ __webpack_require__.r(__webpack_exports__);
         rewrites: combinedRewrites,
         i18n: undefined,
         page: "/posts/[id]",
-        buildId: "ZZN49eQiwQv17i5j6G09H",
-        escapedBuildId: "ZZN49eQiwQv17i5j6G09H",
+        buildId: "58HagMa5q8V6oQQTUXLWL",
+        escapedBuildId: "58HagMa5q8V6oQQTUXLWL",
         basePath: "",
         pageIsDynamic: true,
-        encodedPreviewProps: {previewModeId:"44b756ca2d959245bc6494a14ffdfe56",previewModeSigningKey:"830f2dbc99149aa474fcf1a87afe78d1ef555e6934f3fa0323033effa0d0615c",previewModeEncryptionKey:"c30c33f5e8700d9fd96ac24bbae296541268c6f89765a72a3c597e8d7dc70dc8"}
+        encodedPreviewProps: {previewModeId:"bb8b86b1a6502567d4ffe8a4a4a141c0",previewModeSigningKey:"314d61c338e9ab3faabefbb9e800fda70cd57f048fc25f103e02d5514d362641",previewModeEncryptionKey:"13093a388937fe3b944651d5382adb201ff3a48a5d9e1484ef456ea699d11034"}
       })
       
     
@@ -133,8 +133,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Post({ post  }) {
-    console.log('post: ', post);
-    // console.log('post: ', post.countries[0])
     const router = (0,next_router__WEBPACK_IMPORTED_MODULE_2__.useRouter)();
     if (router.isFallback) {
         return(/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
@@ -144,38 +142,39 @@ function Post({ post  }) {
     return(/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
         children: [
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h1", {
-                className: "text-5xl mt-4 font-semibold tracking-wide",
+                className: "text-5xl mt-4 font-semibold tracking-wide mt-36 text-center",
                 children: [
                     "Title: ",
                     post.title
                 ]
             }),
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h4", {
-                className: "text-3xl mt-4 font-semibold tracking-wide",
+                className: "text-3xl mt-4 font-semibold tracking-wide text-center",
                 children: [
                     "Category: ",
                     post.category
                 ]
             }),
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
-                className: "text-1xl mt-4 font-semibold tracking-wide",
+                className: "text-1xl mt-4 font-semibold tracking-wide text-center",
                 children: [
-                    "Selected Blog Category: ",
+                    "Selected Category Name: ",
                     post.select
                 ]
             }),
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "m-8",
+                className: "m-8 text-center",
                 children: [
                     "Content: ",
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_markdown__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, {
-                        className: "prose",
+                        className: "prose text-center",
                         children: post.content
                     })
                 ]
             }),
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("time", {
                 dateTime: post.createdAt,
+                className: "invisible",
                 children: [
                     "Blog gerenated date created at: ",
                     new Date(post.createdAt).toDateString()
@@ -185,6 +184,7 @@ function Post({ post  }) {
             }),
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("time", {
                 dateTime: post.date,
+                className: "text-center",
                 children: [
                     "User date created at: ",
                     new Date(post.date).toDateString()
@@ -402,7 +402,7 @@ module.exports = require("zlib");
 var __webpack_require__ = require("../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [476,697,162,615,788], () => (__webpack_exec__(27334)));
+var __webpack_exports__ = __webpack_require__.X(0, [360,162,696], () => (__webpack_exec__(24797)));
 module.exports = __webpack_exports__;
 
 })();

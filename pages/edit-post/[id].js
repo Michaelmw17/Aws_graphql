@@ -7,7 +7,6 @@ import { v4 as uuid } from 'uuid'
 import { updatePost } from '../../graphql/mutations'
 import { getPost } from '../../graphql/queries'
 import MySelect from '../../components/Autocomplete'
-// import { countries} from '../../components/Autocomplete'
 
 function EditPost() {
     const [post, setPost] = useState(null)
@@ -20,7 +19,7 @@ function EditPost() {
         async function fetchPost() {
         if (!id) return
         const postData = await API.graphql({ query: getPost, variables: { id }})
-        console.log('postData: ', postData)
+        // console.log('postData: ', postData)
         setPost(postData.data.getPost)
         }
     }, [id])
@@ -60,7 +59,7 @@ function EditPost() {
             className="border-b pb-2 text-lg my-4 focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2"
         />
         <div className="mt-2 mb-2">
-         <MySelect
+        <MySelect
           options={options}
           name="countries"
           onChange={onChange => setPost({ ...post, countries: onChange.value })}
@@ -76,6 +75,7 @@ function EditPost() {
           onChange={onChange => setPost({ ...post, select: onChange })}
           value= {post.select}
           className="m-6"
+          placeholder="Category Select..."
         />
         </div>
             {/* <div>label: {post.countries ? countries.label : ""}</div> */}

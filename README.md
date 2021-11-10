@@ -1,27 +1,24 @@
+# Aws_graphql
 ### Overview
+
+[Link to Website](https://d4j1nk8d40kdh.cloudfront.net/)
 
 We'll start from scratch, creating a new Next.js app. We'll then, step by step, use the [Amplify CLI](https://github.com/aws-amplify/amplify-cli) to build out and configure our cloud infrastructure and then use the [Amplify JS Libraries](https://github.com/aws-amplify/amplify-js) to connect the Next.js app to the APIs we create using the CLI.
 
-The app will be a 3 page multi-user blog post application. The app we will displaying a list of posts with data like the title, content, and author of the post.
-## Current stack: 
+The app will be a 3 page multi-user blog post application. The app we will displaying a list of posts with data like the title, content, and author of the post. 
 
-- React
-- Tailwind CSS
-- Graphql
-- Node.js
-- AWS Amplify
-- (Planning to add) TypeScript
-### Table of Contents
+<!-- ### Table of Contents
 
 - [Overview](#overview)
 - [Requirements](#requirements)
 - [Getting Started](#getting-started---creating-the-nextjs-application)
-- [Adding an API](#adding-an-aws-appsync-graphql-api)
+- [Adding an API](#adding-an-aws-appsync-graphql-api) -->
 
 ## Requirements
 
 ### [📄 1, 2 & 3 page Requirements](https://github.com/forexco/code-challenge-1)
 
+#
 ### Environment & prerequisites
 
 
@@ -248,6 +245,7 @@ import '../configureAmplify'
 Now, our app is ready to start using our AWS services.
 
 ## Development server
+Deployed to [https://d4j1nk8d40kdh.cloudfront.net/](https://d4j1nk8d40kdh.cloudfront.net/)
 
 First, run the development server:
 
@@ -280,4 +278,3 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# Aws_graphql

@@ -5,7 +5,7 @@ exports.id = 820;
 exports.ids = [820];
 exports.modules = {
 
-/***/ 24007:
+/***/ 76108:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 
       const documentModule = __webpack_require__(23105)
 
-      const appMod = __webpack_require__(78140)
+      const appMod = __webpack_require__(85250)
       let App = appMod.default || appMod.then && appMod.then(mod => mod.default);
 
       const compMod = __webpack_require__(89185)
@@ -99,11 +99,11 @@ __webpack_require__.r(__webpack_exports__);
         rewrites: combinedRewrites,
         i18n: undefined,
         page: "/_error",
-        buildId: "ZZN49eQiwQv17i5j6G09H",
-        escapedBuildId: "ZZN49eQiwQv17i5j6G09H",
+        buildId: "58HagMa5q8V6oQQTUXLWL",
+        escapedBuildId: "58HagMa5q8V6oQQTUXLWL",
         basePath: "",
         pageIsDynamic: false,
-        encodedPreviewProps: {previewModeId:"44b756ca2d959245bc6494a14ffdfe56",previewModeSigningKey:"830f2dbc99149aa474fcf1a87afe78d1ef555e6934f3fa0323033effa0d0615c",previewModeEncryptionKey:"c30c33f5e8700d9fd96ac24bbae296541268c6f89765a72a3c597e8d7dc70dc8"}
+        encodedPreviewProps: {previewModeId:"bb8b86b1a6502567d4ffe8a4a4a141c0",previewModeSigningKey:"314d61c338e9ab3faabefbb9e800fda70cd57f048fc25f103e02d5514d362641",previewModeEncryptionKey:"13093a388937fe3b944651d5382adb201ff3a48a5d9e1484ef456ea699d11034"}
       })
       
     
@@ -271,7 +271,7 @@ module.exports = require("zlib");
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [476,615], () => (__webpack_exec__(24007)));
+var __webpack_exports__ = __webpack_require__.X(0, [360,696], () => (__webpack_exec__(76108)));
 module.exports = __webpack_exports__;
 
 })();

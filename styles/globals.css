@@ -10,3 +10,11 @@
 .alert {
   color: #ff4242;
 }
+h1 {
+  text-align: center;
+}
+#fixedButton {
+    position: fixed;
+    bottom: 0px;
+    right: 0px; 
+}
