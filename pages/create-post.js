@@ -7,7 +7,6 @@ import SimpleMDE from "react-simplemde-editor"
 import "easymde/dist/easymde.min.css"
 import { createPost } from '../graphql/mutations'
 import MySelect from '../components/Autocomplete'
-// import MyCategorySelect from '../components/Category'
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from '@hookform/error-message';
 import DatePicker from "react-datepicker";
@@ -33,7 +32,7 @@ function CreatePost() {
   
   console.log('setPost', post.countries ? countries.label : "")
   async function createNewPost() {
-    //if ( !title || !content || !category || !countries || !select || !date ||  !createdAt ) return
+    if ( !title || !content || !category || !countries || !select || !date ||  !createdAt ) return
     const id = uuid() 
     post.id = id
     await API.graphql({
@@ -42,12 +41,13 @@ function CreatePost() {
       authMode: "AMAZON_COGNITO_USER_POOLS"
     })
     router.push(`/posts/${id}`)
+    
   }
   return (
-    <form onSubmit={handleSubmit(onSubmit)} autoComplete="off"
+    <form onSubmit={handleSubmit(onSubmit)} autoComplete="false"
       noValidate>
     <div>
-      <h1 className="text-3xl font-semibold tracking-wide mt-6">Create New Article</h1>
+      <h1 className="text-3xl font-semibold tracking-wide mt-36">Create New Article</h1>
       <p className="mt-6">Enter Title: </p>
       <input
         aria-invalid={errors.title ? "true" : "false"}
@@ -64,7 +64,7 @@ function CreatePost() {
           This field is required
         </span>
       )}
-      <p>Enter Author's Category: </p>
+      <p>Enter Category: </p>
       <input
         aria-invalid={errors.category ? "true" : "false"}
         {...register('category', { required: true })}
@@ -81,14 +81,12 @@ function CreatePost() {
       )}
       <p  className="mb-2 mt-2" >Select Created Date: </p>
       <DatePicker
-        // onChange={(date) => setStartDate(date)} 
         aria-invalid={errors.date ? "true" : "false"}
-         {...register('date', { required: true })}
-         selected={post.date}
+        {...register('date', { required: true })}
+        selected={post.date}
         onChange={(date) => setPost({...post, date})}
         name="date"
-        placeholder="Created date"autoComplete
-        //value={post.date}
+        placeholder="Created date" autoComplete="true"
         className="visible focus:outline-black outline-black"
         
       />
@@ -117,7 +115,7 @@ function CreatePost() {
         </span>
       )}
       </div>
-       <div className="mb-2 mt-2">
+      <div className="mb-2 mt-2">
       <p>Select Blog's Category: </p>
       <MySelect
         aria-invalid={errors.select ? "true" : "false"}
@@ -139,7 +137,7 @@ function CreatePost() {
       </div>
       <div className="mb-2 mt-2">
       </div>
-         <p className="mt-8" >Enter Blog Content: </p>
+        <p className="mt-8" >Enter Blog Content: </p>
       <SimpleMDE 
           aria-invalid={errors.content ? "true" : "false"}
             {...register('content', { required: true })}
@@ -155,7 +153,7 @@ function CreatePost() {
           </p> 
           </span>
       )}
-       <input
+      <input
         onChange={onChange}
         name="createdAt"
         placeholder="Time created"

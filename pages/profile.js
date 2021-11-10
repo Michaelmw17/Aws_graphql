@@ -14,10 +14,10 @@ function Profile() {
     if (!user) return null
     return (
         <div>
-        <h1 className="text-3xl font-semibold tracking-wide mt-6">Profile</h1>
-        <h3 className="font-medium text-gray-500 my-2">Username: {user.username}</h3>
-        <p className="text-sm text-gray-500 mb-6">Email: {user.attributes.email}</p>
-        <AmplifySignOut />
+        <h1 className="text-6xl font-semibold tracking-wide mt-36">Profile</h1>
+        <h3 className="text-xl font-semibold  mt-2text-gray-500 my-2">Username: {user.username}</h3>
+        <p className="text-xl font-semibold  mt-2 text-gray-500 mb-6">Email: {user.attributes.email}</p>
+        <AmplifySignOut  className="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded focus:outline-none focus:shadow-outline"/>
         </div>
     )
 }
