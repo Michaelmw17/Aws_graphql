@@ -7,7 +7,6 @@ We'll start from scratch, creating a new Next.js app. We'll then, step by step, 
 
 The app will be a 3 page multi-user blog post application. The app we will displaying a list of posts with data like the title, content, and author of the post. 
 
-
 ### Table of Contents
 
 - [Overview](#overview)
@@ -19,8 +18,6 @@ The app will be a 3 page multi-user blog post application. The app we will displ
 
 ### [📄 1, 2 & 3 page Requirements](https://github.com/forexco/code-challenge-1)
 
-
-#
 ### Environment & prerequisites
 
 
