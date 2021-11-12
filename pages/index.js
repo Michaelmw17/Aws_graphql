@@ -36,14 +36,14 @@ export default function Home() {
       <h1 className="text-3xl font-semibold tracking-wide mt-36 mb-8">Latest Article Page</h1>
       {slice.sort(({  createdAt: b }, { createdAt: a }) => a < b)
               .map((post, index) => (
-        <Link key={index} href={`/posts/${post.id}`}>
+        <Link key={index} href={`/posts/${post.id}`} passHref>
           <div className="my-6 pb-6 border-b border-gray-300	">
             <div className="cursor-pointer mt-2">
               <p className="text-gray-500  font-semibold mt-2">Author: {post.username}</p>
               <h2 className="text-xl font-semibold  mt-2">Title: {post.title}</h2>
               <p className="text-xl font-semibold  mt-2 mb-2">Category: {post.category}</p>
               <p className="text-1xl mt-2 font-semibold tracking-wide">Selected Blog Category:  {post.select}</p>
-              <p className="text-l font-semibold">Author's  Country: {post.countries}</p>
+              <p className="text-l font-semibold">Author&apos;s  Country: {post.countries}</p>
               <time dateTime={post.createdAt} className="invisible">
                 Blog gerenated date created at: {new Date(post.createdAt).toDateString()}</time>
                 <br/>

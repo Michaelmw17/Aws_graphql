@@ -70,7 +70,7 @@ const TestApp = ({ classes }) => {
     return (    
         <>
         {slice.map((post, index) => (  
-            <Link key={index} href={`/posts/${post.id}`}>  
+            <Link key={index} href={`/posts/${post.id}`} passHref>  
                 <div className={classes.root}>
                     <ReactCardFlipper
                         width="300px"
@@ -87,7 +87,7 @@ const TestApp = ({ classes }) => {
                                             <p className="text-1xl mt-4 font-semibold tracking-wide mt-6 mb-6">Selected Category Name:  {post.select}</p>
                                         <div className='fixed bottom-0 w-full mb-2 mr-8'>
                                         <p className="text-gray-500  font-semibold mt-2">Author Name: {post.username}</p>
-                                        <p className="text-l font-semibold">Author's  Country: {post.countries}</p>
+                                        <p className="text-l font-semibold">Author&apos;s  Country: {post.countries}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -99,7 +99,7 @@ const TestApp = ({ classes }) => {
                                     <p className="text-1xl mt-4 font-semibold tracking-wide text-center">Category: {post.category}</p>
                                         <div className='fixed bottom-0 w-ful text-center mb-2 ml-4'>
                                         <p className="text-gray-500  font-semibold mt-2">Author Name: {post.username}</p>
-                                        <p className="text-l font-semibold">Author's  Country: {post.countries}</p>
+                                        <p className="text-l font-semibold">Author&apos;s  Country: {post.countries}</p>
                                         <time dateTime={post.createdAt} className="invisible">
                                         Blog gerenated date created at: <br/>{new Date(post.createdAt).toDateString()}+
                                         </time>

@@ -19,7 +19,7 @@ function EditPost() {
         async function fetchPost() {
         if (!id) return
         const postData = await API.graphql({ query: getPost, variables: { id }})
-        // console.log('postData: ', postData)
+        console.log('postData: ', postData)
         setPost(postData.data.getPost)
         }
     }, [id])

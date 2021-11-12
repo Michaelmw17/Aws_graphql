@@ -1,10 +1,10 @@
 {
   "name": "ineysga-yyrwf5",
-  "hash": "2I9pMejUFVM7K1fxoDtPMwv1kbAGMv6q4vM+IZPoBaw=",
+  "hash": "1NOqspAvsaBzihmeFVLQ9TzgDJ6cd7udoshEGO5hXVA=",
   "description": "Default Lambda@Edge for Next CloudFront distribution",
   "memory": 512,
   "timeout": 10,
-  "code": "/Users/MichaelWatt/aws_next/amplify-next/.serverless_nextjs/default-lambda",
+  "code": "/Users/MichaelWatt/PullRequest/file/code-challenge-1/amplify-next/.serverless_nextjs/default-lambda",
   "shims": [],
   "handler": "index.handler",
   "runtime": "nodejs12.x",

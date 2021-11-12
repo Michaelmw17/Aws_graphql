@@ -5,7 +5,7 @@ exports.id = 820;
 exports.ids = [820];
 exports.modules = {
 
-/***/ 76108:
+/***/ 31369:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -99,11 +99,11 @@ __webpack_require__.r(__webpack_exports__);
         rewrites: combinedRewrites,
         i18n: undefined,
         page: "/_error",
-        buildId: "58HagMa5q8V6oQQTUXLWL",
-        escapedBuildId: "58HagMa5q8V6oQQTUXLWL",
+        buildId: "WEV6dMsc6lCQy9hvg-pXE",
+        escapedBuildId: "WEV6dMsc6lCQy9hvg\-pXE",
         basePath: "",
         pageIsDynamic: false,
-        encodedPreviewProps: {previewModeId:"bb8b86b1a6502567d4ffe8a4a4a141c0",previewModeSigningKey:"314d61c338e9ab3faabefbb9e800fda70cd57f048fc25f103e02d5514d362641",previewModeEncryptionKey:"13093a388937fe3b944651d5382adb201ff3a48a5d9e1484ef456ea699d11034"}
+        encodedPreviewProps: {previewModeId:"b2e926b6875afdc127b8f945a109c197",previewModeSigningKey:"8160df314ff521b3577df6df1a7f8a0a293549028bbbafc01e891d60bab8d387",previewModeEncryptionKey:"15756991bff5a5e04d4092538313121d988d92fd2be3866267f0509683f54203"}
       })
       
     
@@ -271,7 +271,7 @@ module.exports = require("zlib");
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [360,696], () => (__webpack_exec__(76108)));
+var __webpack_exports__ = __webpack_require__.X(0, [360,696], () => (__webpack_exec__(31369)));
 module.exports = __webpack_exports__;
 
 })();

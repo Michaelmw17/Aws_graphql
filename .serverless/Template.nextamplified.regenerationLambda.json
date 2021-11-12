@@ -1,0 +1,17 @@
+{
+  "name": "ineysga-q1oeiv",
+  "hash": "V9cBJsUQ7yr1Lyj2kuB+pfqm2C8lvZhbI1/Ow0dXOQw=",
+  "description": "Next.js Regeneration Lambda",
+  "memory": 512,
+  "timeout": 10,
+  "code": "/Users/MichaelWatt/PullRequest/file/code-challenge-1/amplify-next/.serverless_nextjs/regeneration-lambda",
+  "shims": [],
+  "handler": "index.handler",
+  "runtime": "nodejs14.x",
+  "env": {},
+  "role": {
+    "arn": "arn:aws:iam::951828171550:role/ineysga-8wca7cg"
+  },
+  "arn": "arn:aws:lambda:us-east-1:951828171550:function:ineysga-q1oeiv",
+  "region": "us-east-1"
+}

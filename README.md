@@ -7,32 +7,20 @@ We'll start from scratch, creating a new Next.js app. We'll then, step by step, 
 
 The app will be a 3 page multi-user blog post application. The app we will displaying a list of posts with data like the title, content, and author of the post. 
 
-## Current stack: 
 
-- React
-- Tailwind CSS
-- Graphql
-- Node.js
-- AWS Amplify
-- TypeScript 
-
-Bouns:
-use Material UI
-use static site generation
-use ORM to manipulate database
-use global state
-<!-- ### Table of Contents
+### Table of Contents
 
 - [Overview](#overview)
 - [Requirements](#requirements)
-- [Getting Started](#getting-started---creating-the-nextjs-application)
-- [Adding an API](#adding-an-aws-appsync-graphql-api) -->
+- [Getting Started](#getting-started---creating-the-next.js-application)
+- [Adding an API](#adding-an-aws-appsync-graphql-api)
 
 ## Requirements
 
 ### [📄 1, 2 & 3 page Requirements](https://github.com/forexco/code-challenge-1)
 
 
+#
 ### Environment & prerequisites
 
 

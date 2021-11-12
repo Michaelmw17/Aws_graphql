@@ -96,7 +96,7 @@ function CreatePost() {
         </span>
       )}
       <div className="mb-2 mt-2">
-      <p>Select Author's Country: </p>
+      <p>Select Author&apos;s Country:</p>
       <MySelect
         aria-invalid={errors.countries ? "true" : "false"}
           {...register('countries', { required: true })}
@@ -116,7 +116,7 @@ function CreatePost() {
       )}
       </div>
       <div className="mb-2 mt-2">
-      <p>Select Blog's Category: </p>
+      <p>Select Blog&apos;s Category</p>
       <MySelect
         aria-invalid={errors.select ? "true" : "false"}
           {...register('select', { required: true })}

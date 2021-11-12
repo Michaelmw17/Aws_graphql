@@ -89,20 +89,20 @@ return (
           </IconButton>
           <Typography noWrap  component={'span'} variant={'h6'}>
             <nav className="p-16 border-b border-gray-300">
-          <Link href="/">
+          <Link href="/" passHref>
             <span className="mr-6 cursor-pointer">Latest Article Page</span>
           </Link>
-          <Link href="/create-post">
-            <span className="mr-6 cursor-pointer"> Management Page</span>
+          <Link href="/create-post" passHref>
+            <span className="mr-6 cursor-pointer">Management Page</span>
           </Link>
           {
             signedInUser && (
-              <Link href="/my-posts">
+              <Link href="/my-posts" passHref>
                 <span className="mr-6 cursor-pointer">My Article Page</span>
               </Link>
             )
           }
-          <Link href="/profile">
+          <Link href="/profile" passHref>
             <span className="mr-6 cursor-pointer">Profile</span>
           </Link>
         </nav>
@@ -123,7 +123,7 @@ return (
             {slice.sort(({  createdAt: b }, { createdAt: a }) => a > b ? 1 : -1)
               .map((post, index) => (
                 <div key={index}>
-                  <Link href="/post/[id]" as={`/post/${post.id}`}>
+                  <Link href={`/posts/${post.id}`} passHref>
                       <div className="flex items-center">
                         <div className="flex-shrink-0">
                         </div>
@@ -142,7 +142,8 @@ return (
               ))
             }
             <div className="mt-4">
-              <button onClick={loadMore} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              <button onClick={loadMore} 
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 Load More
               </button>
             </div>
