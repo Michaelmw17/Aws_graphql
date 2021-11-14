@@ -27,9 +27,12 @@ import { listPosts } from '../../graphql/queries'
 export default function SideBar() {
   const [open, setOpen] = useState(false);
   const [signedInUser, setSignedInUser] = useState(false)
+
   useEffect(() => {
     authListener()
-  })
+    fetchPosts()
+  }, [])
+  
   async function authListener() {
     Hub.listen('auth', (data) => {
       switch (data.payload.event) {
@@ -59,10 +62,6 @@ export default function SideBar() {
   const loadMore = () => {
     setnoOfElement(noOfElement + 5)
   }
-
-  useEffect(() => {
-    fetchPosts()
-  }, [])
 
   async function fetchPosts() {
     const postData = await API.graphql({
