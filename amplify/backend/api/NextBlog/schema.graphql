@@ -1,9 +1,16 @@
-type Post @model
-  @key(name: "postsByUsername", fields: ["username"], queryField: "postsByUsername")
-  @auth(rules: [
-    { allow: owner, ownerField: "username" },
-    { allow: public, operations: [read] }
-  ])  {
+type Post
+  @model
+  @key(
+    name: "postsByUsername"
+    fields: ["username"]
+    queryField: "postsByUsername"
+  )
+  @auth(
+    rules: [
+      { allow: owner, ownerField: "username" }
+      { allow: public, operations: [read] }
+    ]
+  ) {
   id: ID!
   title: String!
   category: String!

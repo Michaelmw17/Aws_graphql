@@ -1,1 +1,17 @@
-{"pageProps":{"post":{"id":"4d8a38ff-fd13-4a64-b751-ffe63ef4edb4","title":"thr","category":"rth","countries":"USA","select":"Weather","date":"2021-02-02T13:00:00.000Z","createdAt":"2021-11-11T13:20:25.933Z","content":"htr","username":"random","updatedAt":"2021-11-11T13:20:39.280Z"}},"__N_SSG":true}
+{
+  "pageProps": {
+    "post": {
+      "id": "4d8a38ff-fd13-4a64-b751-ffe63ef4edb4",
+      "title": "thr",
+      "category": "rth",
+      "countries": "USA",
+      "select": "Weather",
+      "date": "2021-02-02T13:00:00.000Z",
+      "createdAt": "2021-11-11T13:20:25.933Z",
+      "content": "htr",
+      "username": "random",
+      "updatedAt": "2021-11-11T13:20:39.280Z"
+    }
+  },
+  "__N_SSG": true
+}

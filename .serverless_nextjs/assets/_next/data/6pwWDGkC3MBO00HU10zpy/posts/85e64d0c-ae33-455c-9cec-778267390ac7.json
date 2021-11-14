@@ -1,1 +1,17 @@
-{"pageProps":{"post":{"id":"85e64d0c-ae33-455c-9cec-778267390ac7","title":"Client side","category":"Client side","countries":"USA","select":"News","date":"2021-11-18T13:00:00.000Z","createdAt":"2021-11-12T01:09:00.882Z","content":"# Hello","username":"random","updatedAt":"2021-11-12T01:09:23.289Z"}},"__N_SSG":true}
+{
+  "pageProps": {
+    "post": {
+      "id": "85e64d0c-ae33-455c-9cec-778267390ac7",
+      "title": "Client side",
+      "category": "Client side",
+      "countries": "USA",
+      "select": "News",
+      "date": "2021-11-18T13:00:00.000Z",
+      "createdAt": "2021-11-12T01:09:00.882Z",
+      "content": "# Hello",
+      "username": "random",
+      "updatedAt": "2021-11-12T01:09:23.289Z"
+    }
+  },
+  "__N_SSG": true
+}

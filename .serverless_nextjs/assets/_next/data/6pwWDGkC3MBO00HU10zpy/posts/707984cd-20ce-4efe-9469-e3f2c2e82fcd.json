@@ -1,1 +1,17 @@
-{"pageProps":{"post":{"id":"707984cd-20ce-4efe-9469-e3f2c2e82fcd","title":"tre","category":"tre","countries":"USA","select":"News","date":"2021-11-11T13:00:00.000Z","createdAt":"2021-11-11T10:29:39.333Z","content":"ert","username":"random","updatedAt":"2021-11-11T10:36:13.016Z"}},"__N_SSG":true}
+{
+  "pageProps": {
+    "post": {
+      "id": "707984cd-20ce-4efe-9469-e3f2c2e82fcd",
+      "title": "tre",
+      "category": "tre",
+      "countries": "USA",
+      "select": "News",
+      "date": "2021-11-11T13:00:00.000Z",
+      "createdAt": "2021-11-11T10:29:39.333Z",
+      "content": "ert",
+      "username": "random",
+      "updatedAt": "2021-11-11T10:36:13.016Z"
+    }
+  },
+  "__N_SSG": true
+}

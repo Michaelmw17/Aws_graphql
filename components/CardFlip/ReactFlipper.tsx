@@ -2,23 +2,23 @@ import React, { Component } from "react";
 import injectSheet from "react-jss";
 import classNames from "classnames";
 
-type Props = { 
-  width: string,
-  height: string,
-  behavior: string,
-  levitate: boolean,
-  innerCardClass?: string,
-  className?: string,
-  children: any,
-  classes: any
+type Props = {
+  width: string;
+  height: string;
+  behavior: string;
+  levitate: boolean;
+  innerCardClass?: string;
+  className?: string;
+  children: any;
+  classes: any;
 };
 
 type State = {
   // classes: Object,
-  isFlipped: boolean,
-  isLevitated: boolean,
-  behavior: string,
-  levitate: boolean
+  isFlipped: boolean;
+  isLevitated: boolean;
+  behavior: string;
+  levitate: boolean;
 };
 
 class ReactCardFlipper extends Component<Props, State> {
@@ -29,18 +29,18 @@ class ReactCardFlipper extends Component<Props, State> {
       isFlipped: false,
       isLevitated: false,
       behavior: this.props.behavior ? this.props.behavior : "click",
-      levitate: this.props.levitate ? this.props.levitate : false
+      levitate: this.props.levitate ? this.props.levitate : false,
     };
   }
 
   handleFlip = () => {
-    this.setState(state => ({
-      isFlipped: !state.isFlipped
+    this.setState((state) => ({
+      isFlipped: !state.isFlipped,
     }));
   };
 
   handleLevitate = () => {
-    this.setState(state => ({ isLevitated: !state.isLevitated }));
+    this.setState((state) => ({ isLevitated: !state.isLevitated }));
   };
 
   handleMouseEvent = () => {
@@ -56,7 +56,7 @@ class ReactCardFlipper extends Component<Props, State> {
   render() {
     const containerStyles = {
       width: this.props.width,
-      height: this.props.height
+      height: this.props.height,
     };
 
     const { classes, innerCardClass, className } = this.props;
@@ -109,7 +109,7 @@ const styles = {
     transformStyle: "preserve-3d",
     width: "auto",
     height: "auto",
-    transition: "transform 500ms cubic-bezier(.18,.45,.11,.91)"
+    transition: "transform 500ms cubic-bezier(.18,.45,.11,.91)",
   },
 
   rcfFront: {
@@ -120,7 +120,7 @@ const styles = {
     position: "absolute",
     top: 0,
     left: 0,
-    zIndex: "2"
+    zIndex: "2",
   },
 
   rcfBack: {
@@ -131,45 +131,45 @@ const styles = {
     position: "absolute",
     top: 0,
     left: 0,
-    transform: "rotateY(180deg)"
+    transform: "rotateY(180deg)",
   },
 
   rcfFlipper: {
     transition: "0.6s",
     transformStyle: "preserve-3d",
-    position: "relative"
+    position: "relative",
   },
 
   rcfActive: {
     "& $rcfFlipper": {
-      transform: "rotateY(180deg) translateX(-20px)"
-    }
+      transform: "rotateY(180deg) translateX(-20px)",
+    },
   },
 
   rcfLevitate: {
     transform: "translateY(-15px)",
-    transition: "transform 500ms cubic-bezier(.18,.45,.11,.91)"
+    transition: "transform 500ms cubic-bezier(.18,.45,.11,.91)",
   },
 
   "@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)": {
     rcfActive: {
       "& $rcfBack": {
-        transform: "rotateY(0deg)"
+        transform: "rotateY(0deg)",
       },
       "& > div": {
-        transform: "rotateY(0deg)"
+        transform: "rotateY(0deg)",
       },
       "& $rcfFront": {
-        transform: "rotateY(180deg)"
-      }
+        transform: "rotateY(180deg)",
+      },
     },
     rcfFront: {
-      transform: "rotateY(0deg)"
+      transform: "rotateY(0deg)",
     },
     rcfBack: {
-      transform: "rotateY(-180deg)"
-    }
-  }
+      transform: "rotateY(-180deg)",
+    },
+  },
 };
 
 export default injectSheet(styles)(ReactCardFlipper);

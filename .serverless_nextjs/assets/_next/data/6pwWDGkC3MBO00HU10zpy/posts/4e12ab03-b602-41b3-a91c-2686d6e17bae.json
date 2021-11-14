@@ -1,1 +1,17 @@
-{"pageProps":{"post":{"id":"4e12ab03-b602-41b3-a91c-2686d6e17bae","title":"5th title","category":"5th category","countries":"Europe","select":"Weather","date":"2021-11-04T13:00:00.000Z","createdAt":"2021-11-10T08:33:49.467Z","content":"5th","username":"random","updatedAt":"2021-11-10T08:34:10.860Z"}},"__N_SSG":true}
+{
+  "pageProps": {
+    "post": {
+      "id": "4e12ab03-b602-41b3-a91c-2686d6e17bae",
+      "title": "5th title",
+      "category": "5th category",
+      "countries": "Europe",
+      "select": "Weather",
+      "date": "2021-11-04T13:00:00.000Z",
+      "createdAt": "2021-11-10T08:33:49.467Z",
+      "content": "5th",
+      "username": "random",
+      "updatedAt": "2021-11-10T08:34:10.860Z"
+    }
+  },
+  "__N_SSG": true
+}

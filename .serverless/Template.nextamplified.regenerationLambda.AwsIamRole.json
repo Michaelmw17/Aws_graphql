@@ -1,9 +1,7 @@
 {
   "name": "ineysga-8wca7cg",
   "arn": "arn:aws:iam::951828171550:role/ineysga-8wca7cg",
-  "service": [
-    "lambda.amazonaws.com"
-  ],
+  "service": ["lambda.amazonaws.com"],
   "policy": {
     "Version": "2012-10-17",
     "Statement": [
@@ -19,17 +17,12 @@
       {
         "Effect": "Allow",
         "Resource": "arn:aws:s3:::ineysga-q1oeiv/*",
-        "Action": [
-          "s3:GetObject",
-          "s3:PutObject"
-        ]
+        "Action": ["s3:GetObject", "s3:PutObject"]
       },
       {
         "Effect": "Allow",
         "Resource": "arn:aws:sqs:us-east-1:951828171550:ineysga-q1oeiv.fifo",
-        "Action": [
-          "sqs:SendMessage"
-        ]
+        "Action": ["sqs:SendMessage"]
       },
       {
         "Effect": "Allow",

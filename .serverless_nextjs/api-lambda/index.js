@@ -1,20 +1,23 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, '__esModule', { value: true });
+Object.defineProperty(exports, "__esModule", { value: true });
 
-var manifest = require('./manifest.json');
-var RoutesManifestJson = require('./routes-manifest.json');
-var Stream = require('stream');
-var zlib = require('zlib');
-var http = require('http');
+var manifest = require("./manifest.json");
+var RoutesManifestJson = require("./routes-manifest.json");
+var Stream = require("stream");
+var zlib = require("zlib");
+var http = require("http");
 
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+function _interopDefaultLegacy(e) {
+  return e && typeof e === "object" && "default" in e ? e : { default: e };
+}
 
-var manifest__default = /*#__PURE__*/_interopDefaultLegacy(manifest);
-var RoutesManifestJson__default = /*#__PURE__*/_interopDefaultLegacy(RoutesManifestJson);
-var Stream__default = /*#__PURE__*/_interopDefaultLegacy(Stream);
-var zlib__default = /*#__PURE__*/_interopDefaultLegacy(zlib);
-var http__default = /*#__PURE__*/_interopDefaultLegacy(http);
+var manifest__default = /*#__PURE__*/ _interopDefaultLegacy(manifest);
+var RoutesManifestJson__default =
+  /*#__PURE__*/ _interopDefaultLegacy(RoutesManifestJson);
+var Stream__default = /*#__PURE__*/ _interopDefaultLegacy(Stream);
+var zlib__default = /*#__PURE__*/ _interopDefaultLegacy(zlib);
+var http__default = /*#__PURE__*/ _interopDefaultLegacy(http);
 
 const specialNodeHeaders = [
   "age",
@@ -33,7 +36,7 @@ const specialNodeHeaders = [
   "proxy-authorization",
   "referer",
   "retry-after",
-  "user-agent"
+  "user-agent",
 ];
 
 const readOnlyCloudFrontHeaders = {
@@ -44,7 +47,7 @@ const readOnlyCloudFrontHeaders = {
   "if-range": true,
   "if-unmodified-since": true,
   "transfer-encoding": true,
-  via: true
+  via: true,
 };
 
 const HttpStatusCodes = {
@@ -101,7 +104,7 @@ const HttpStatusCodes = {
   401: "Unauthorized",
   422: "Unprocessable Entity",
   415: "Unsupported Media Type",
-  305: "Use Proxy"
+  305: "Use Proxy",
 };
 
 const toCloudFrontHeaders = (headers, originalHeaders) => {
@@ -129,13 +132,13 @@ const toCloudFrontHeaders = (headers, originalHeaders) => {
       headerValue.forEach((val) => {
         result[lowerCaseHeaderName].push({
           key: headerName,
-          value: val.toString()
+          value: val.toString(),
         });
       });
     } else {
       result[lowerCaseHeaderName].push({
         key: headerName,
-        value: headerValue.toString()
+        value: headerValue.toString(),
       });
     }
   });
@@ -159,19 +162,22 @@ const isGzipSupported = (headers) => {
 };
 
 const defaultOptions = {
-  enableHTTPCompression: false
+  enableHTTPCompression: false,
 };
 
 const handler = (event, { enableHTTPCompression } = defaultOptions) => {
   const { request: cfRequest, response: cfResponse = { headers: {} } } = event;
 
   const response = {
-    headers: {}
+    headers: {},
   };
 
-  const newStream = new Stream__default['default'].Readable();
+  const newStream = new Stream__default["default"].Readable();
 
-  const req = Object.assign(newStream, http__default['default'].IncomingMessage.prototype);
+  const req = Object.assign(
+    newStream,
+    http__default["default"].IncomingMessage.prototype
+  );
   req.url = cfRequest.uri;
   req.method = cfRequest.method;
   req.rawHeaders = [];
@@ -212,7 +218,7 @@ const handler = (event, { enableHTTPCompression } = defaultOptions) => {
 
   req.push(null);
 
-  const res = new Stream__default['default']();
+  const res = new Stream__default["default"]();
   res.finished = false;
 
   Object.defineProperty(res, "statusCode", {
@@ -222,7 +228,7 @@ const handler = (event, { enableHTTPCompression } = defaultOptions) => {
     set(statusCode) {
       response.status = statusCode;
       response.statusDescription = HttpStatusCodes[statusCode];
-    }
+    },
   });
 
   res.headers = {};
@@ -241,7 +247,7 @@ const handler = (event, { enableHTTPCompression } = defaultOptions) => {
 
     response.body = Buffer.concat([
       response.body,
-      Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk)
+      Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk),
     ]);
   };
 
@@ -264,7 +270,7 @@ const handler = (event, { enableHTTPCompression } = defaultOptions) => {
       if (response.body) {
         response.bodyEncoding = "base64";
         response.body = shouldGzip
-          ? zlib__default['default'].gzipSync(response.body).toString("base64")
+          ? zlib__default["default"].gzipSync(response.body).toString("base64")
           : Buffer.from(response.body).toString("base64");
       }
 
@@ -272,7 +278,7 @@ const handler = (event, { enableHTTPCompression } = defaultOptions) => {
 
       if (shouldGzip) {
         response.headers["content-encoding"] = [
-          { key: "Content-Encoding", value: "gzip" }
+          { key: "Content-Encoding", value: "gzip" },
         ];
       }
       resolve(response);
@@ -298,7 +304,7 @@ const handler = (event, { enableHTTPCompression } = defaultOptions) => {
   return {
     req,
     res,
-    responsePromise
+    responsePromise,
   };
 };
 
@@ -310,383 +316,451 @@ var nextAwsCloudfront = handler;
  * Tokenize input string.
  */
 function lexer(str) {
-    var tokens = [];
-    var i = 0;
-    while (i < str.length) {
-        var char = str[i];
-        if (char === "*" || char === "+" || char === "?") {
-            tokens.push({ type: "MODIFIER", index: i, value: str[i++] });
-            continue;
-        }
-        if (char === "\\") {
-            tokens.push({ type: "ESCAPED_CHAR", index: i++, value: str[i++] });
-            continue;
-        }
-        if (char === "{") {
-            tokens.push({ type: "OPEN", index: i, value: str[i++] });
-            continue;
-        }
-        if (char === "}") {
-            tokens.push({ type: "CLOSE", index: i, value: str[i++] });
-            continue;
-        }
-        if (char === ":") {
-            var name = "";
-            var j = i + 1;
-            while (j < str.length) {
-                var code = str.charCodeAt(j);
-                if (
-                // `0-9`
-                (code >= 48 && code <= 57) ||
-                    // `A-Z`
-                    (code >= 65 && code <= 90) ||
-                    // `a-z`
-                    (code >= 97 && code <= 122) ||
-                    // `_`
-                    code === 95) {
-                    name += str[j++];
-                    continue;
-                }
-                break;
-            }
-            if (!name)
-                throw new TypeError("Missing parameter name at " + i);
-            tokens.push({ type: "NAME", index: i, value: name });
-            i = j;
-            continue;
-        }
-        if (char === "(") {
-            var count = 1;
-            var pattern = "";
-            var j = i + 1;
-            if (str[j] === "?") {
-                throw new TypeError("Pattern cannot start with \"?\" at " + j);
-            }
-            while (j < str.length) {
-                if (str[j] === "\\") {
-                    pattern += str[j++] + str[j++];
-                    continue;
-                }
-                if (str[j] === ")") {
-                    count--;
-                    if (count === 0) {
-                        j++;
-                        break;
-                    }
-                }
-                else if (str[j] === "(") {
-                    count++;
-                    if (str[j + 1] !== "?") {
-                        throw new TypeError("Capturing groups are not allowed at " + j);
-                    }
-                }
-                pattern += str[j++];
-            }
-            if (count)
-                throw new TypeError("Unbalanced pattern at " + i);
-            if (!pattern)
-                throw new TypeError("Missing pattern at " + i);
-            tokens.push({ type: "PATTERN", index: i, value: pattern });
-            i = j;
-            continue;
-        }
-        tokens.push({ type: "CHAR", index: i, value: str[i++] });
+  var tokens = [];
+  var i = 0;
+  while (i < str.length) {
+    var char = str[i];
+    if (char === "*" || char === "+" || char === "?") {
+      tokens.push({ type: "MODIFIER", index: i, value: str[i++] });
+      continue;
     }
-    tokens.push({ type: "END", index: i, value: "" });
-    return tokens;
+    if (char === "\\") {
+      tokens.push({ type: "ESCAPED_CHAR", index: i++, value: str[i++] });
+      continue;
+    }
+    if (char === "{") {
+      tokens.push({ type: "OPEN", index: i, value: str[i++] });
+      continue;
+    }
+    if (char === "}") {
+      tokens.push({ type: "CLOSE", index: i, value: str[i++] });
+      continue;
+    }
+    if (char === ":") {
+      var name = "";
+      var j = i + 1;
+      while (j < str.length) {
+        var code = str.charCodeAt(j);
+        if (
+          // `0-9`
+          (code >= 48 && code <= 57) ||
+          // `A-Z`
+          (code >= 65 && code <= 90) ||
+          // `a-z`
+          (code >= 97 && code <= 122) ||
+          // `_`
+          code === 95
+        ) {
+          name += str[j++];
+          continue;
+        }
+        break;
+      }
+      if (!name) throw new TypeError("Missing parameter name at " + i);
+      tokens.push({ type: "NAME", index: i, value: name });
+      i = j;
+      continue;
+    }
+    if (char === "(") {
+      var count = 1;
+      var pattern = "";
+      var j = i + 1;
+      if (str[j] === "?") {
+        throw new TypeError('Pattern cannot start with "?" at ' + j);
+      }
+      while (j < str.length) {
+        if (str[j] === "\\") {
+          pattern += str[j++] + str[j++];
+          continue;
+        }
+        if (str[j] === ")") {
+          count--;
+          if (count === 0) {
+            j++;
+            break;
+          }
+        } else if (str[j] === "(") {
+          count++;
+          if (str[j + 1] !== "?") {
+            throw new TypeError("Capturing groups are not allowed at " + j);
+          }
+        }
+        pattern += str[j++];
+      }
+      if (count) throw new TypeError("Unbalanced pattern at " + i);
+      if (!pattern) throw new TypeError("Missing pattern at " + i);
+      tokens.push({ type: "PATTERN", index: i, value: pattern });
+      i = j;
+      continue;
+    }
+    tokens.push({ type: "CHAR", index: i, value: str[i++] });
+  }
+  tokens.push({ type: "END", index: i, value: "" });
+  return tokens;
 }
 /**
  * Parse a string for the raw tokens.
  */
 function parse(str, options) {
-    if (options === void 0) { options = {}; }
-    var tokens = lexer(str);
-    var _a = options.prefixes, prefixes = _a === void 0 ? "./" : _a;
-    var defaultPattern = "[^" + escapeString(options.delimiter || "/#?") + "]+?";
-    var result = [];
-    var key = 0;
-    var i = 0;
-    var path = "";
-    var tryConsume = function (type) {
-        if (i < tokens.length && tokens[i].type === type)
-            return tokens[i++].value;
-    };
-    var mustConsume = function (type) {
-        var value = tryConsume(type);
-        if (value !== undefined)
-            return value;
-        var _a = tokens[i], nextType = _a.type, index = _a.index;
-        throw new TypeError("Unexpected " + nextType + " at " + index + ", expected " + type);
-    };
-    var consumeText = function () {
-        var result = "";
-        var value;
-        // tslint:disable-next-line
-        while ((value = tryConsume("CHAR") || tryConsume("ESCAPED_CHAR"))) {
-            result += value;
-        }
-        return result;
-    };
-    while (i < tokens.length) {
-        var char = tryConsume("CHAR");
-        var name = tryConsume("NAME");
-        var pattern = tryConsume("PATTERN");
-        if (name || pattern) {
-            var prefix = char || "";
-            if (prefixes.indexOf(prefix) === -1) {
-                path += prefix;
-                prefix = "";
-            }
-            if (path) {
-                result.push(path);
-                path = "";
-            }
-            result.push({
-                name: name || key++,
-                prefix: prefix,
-                suffix: "",
-                pattern: pattern || defaultPattern,
-                modifier: tryConsume("MODIFIER") || ""
-            });
-            continue;
-        }
-        var value = char || tryConsume("ESCAPED_CHAR");
-        if (value) {
-            path += value;
-            continue;
-        }
-        if (path) {
-            result.push(path);
-            path = "";
-        }
-        var open = tryConsume("OPEN");
-        if (open) {
-            var prefix = consumeText();
-            var name_1 = tryConsume("NAME") || "";
-            var pattern_1 = tryConsume("PATTERN") || "";
-            var suffix = consumeText();
-            mustConsume("CLOSE");
-            result.push({
-                name: name_1 || (pattern_1 ? key++ : ""),
-                pattern: name_1 && !pattern_1 ? defaultPattern : pattern_1,
-                prefix: prefix,
-                suffix: suffix,
-                modifier: tryConsume("MODIFIER") || ""
-            });
-            continue;
-        }
-        mustConsume("END");
+  if (options === void 0) {
+    options = {};
+  }
+  var tokens = lexer(str);
+  var _a = options.prefixes,
+    prefixes = _a === void 0 ? "./" : _a;
+  var defaultPattern = "[^" + escapeString(options.delimiter || "/#?") + "]+?";
+  var result = [];
+  var key = 0;
+  var i = 0;
+  var path = "";
+  var tryConsume = function (type) {
+    if (i < tokens.length && tokens[i].type === type) return tokens[i++].value;
+  };
+  var mustConsume = function (type) {
+    var value = tryConsume(type);
+    if (value !== undefined) return value;
+    var _a = tokens[i],
+      nextType = _a.type,
+      index = _a.index;
+    throw new TypeError(
+      "Unexpected " + nextType + " at " + index + ", expected " + type
+    );
+  };
+  var consumeText = function () {
+    var result = "";
+    var value;
+    // tslint:disable-next-line
+    while ((value = tryConsume("CHAR") || tryConsume("ESCAPED_CHAR"))) {
+      result += value;
     }
     return result;
+  };
+  while (i < tokens.length) {
+    var char = tryConsume("CHAR");
+    var name = tryConsume("NAME");
+    var pattern = tryConsume("PATTERN");
+    if (name || pattern) {
+      var prefix = char || "";
+      if (prefixes.indexOf(prefix) === -1) {
+        path += prefix;
+        prefix = "";
+      }
+      if (path) {
+        result.push(path);
+        path = "";
+      }
+      result.push({
+        name: name || key++,
+        prefix: prefix,
+        suffix: "",
+        pattern: pattern || defaultPattern,
+        modifier: tryConsume("MODIFIER") || "",
+      });
+      continue;
+    }
+    var value = char || tryConsume("ESCAPED_CHAR");
+    if (value) {
+      path += value;
+      continue;
+    }
+    if (path) {
+      result.push(path);
+      path = "";
+    }
+    var open = tryConsume("OPEN");
+    if (open) {
+      var prefix = consumeText();
+      var name_1 = tryConsume("NAME") || "";
+      var pattern_1 = tryConsume("PATTERN") || "";
+      var suffix = consumeText();
+      mustConsume("CLOSE");
+      result.push({
+        name: name_1 || (pattern_1 ? key++ : ""),
+        pattern: name_1 && !pattern_1 ? defaultPattern : pattern_1,
+        prefix: prefix,
+        suffix: suffix,
+        modifier: tryConsume("MODIFIER") || "",
+      });
+      continue;
+    }
+    mustConsume("END");
+  }
+  return result;
 }
 /**
  * Compile a string to a template function for the path.
  */
 function compile(str, options) {
-    return tokensToFunction(parse(str, options), options);
+  return tokensToFunction(parse(str, options), options);
 }
 /**
  * Expose a method for transforming tokens into the path function.
  */
 function tokensToFunction(tokens, options) {
-    if (options === void 0) { options = {}; }
-    var reFlags = flags(options);
-    var _a = options.encode, encode = _a === void 0 ? function (x) { return x; } : _a, _b = options.validate, validate = _b === void 0 ? true : _b;
-    // Compile all the tokens into regexps.
-    var matches = tokens.map(function (token) {
-        if (typeof token === "object") {
-            return new RegExp("^(?:" + token.pattern + ")$", reFlags);
+  if (options === void 0) {
+    options = {};
+  }
+  var reFlags = flags(options);
+  var _a = options.encode,
+    encode =
+      _a === void 0
+        ? function (x) {
+            return x;
+          }
+        : _a,
+    _b = options.validate,
+    validate = _b === void 0 ? true : _b;
+  // Compile all the tokens into regexps.
+  var matches = tokens.map(function (token) {
+    if (typeof token === "object") {
+      return new RegExp("^(?:" + token.pattern + ")$", reFlags);
+    }
+  });
+  return function (data) {
+    var path = "";
+    for (var i = 0; i < tokens.length; i++) {
+      var token = tokens[i];
+      if (typeof token === "string") {
+        path += token;
+        continue;
+      }
+      var value = data ? data[token.name] : undefined;
+      var optional = token.modifier === "?" || token.modifier === "*";
+      var repeat = token.modifier === "*" || token.modifier === "+";
+      if (Array.isArray(value)) {
+        if (!repeat) {
+          throw new TypeError(
+            'Expected "' + token.name + '" to not repeat, but got an array'
+          );
         }
-    });
-    return function (data) {
-        var path = "";
-        for (var i = 0; i < tokens.length; i++) {
-            var token = tokens[i];
-            if (typeof token === "string") {
-                path += token;
-                continue;
-            }
-            var value = data ? data[token.name] : undefined;
-            var optional = token.modifier === "?" || token.modifier === "*";
-            var repeat = token.modifier === "*" || token.modifier === "+";
-            if (Array.isArray(value)) {
-                if (!repeat) {
-                    throw new TypeError("Expected \"" + token.name + "\" to not repeat, but got an array");
-                }
-                if (value.length === 0) {
-                    if (optional)
-                        continue;
-                    throw new TypeError("Expected \"" + token.name + "\" to not be empty");
-                }
-                for (var j = 0; j < value.length; j++) {
-                    var segment = encode(value[j], token);
-                    if (validate && !matches[i].test(segment)) {
-                        throw new TypeError("Expected all \"" + token.name + "\" to match \"" + token.pattern + "\", but got \"" + segment + "\"");
-                    }
-                    path += token.prefix + segment + token.suffix;
-                }
-                continue;
-            }
-            if (typeof value === "string" || typeof value === "number") {
-                var segment = encode(String(value), token);
-                if (validate && !matches[i].test(segment)) {
-                    throw new TypeError("Expected \"" + token.name + "\" to match \"" + token.pattern + "\", but got \"" + segment + "\"");
-                }
-                path += token.prefix + segment + token.suffix;
-                continue;
-            }
-            if (optional)
-                continue;
-            var typeOfMessage = repeat ? "an array" : "a string";
-            throw new TypeError("Expected \"" + token.name + "\" to be " + typeOfMessage);
+        if (value.length === 0) {
+          if (optional) continue;
+          throw new TypeError('Expected "' + token.name + '" to not be empty');
         }
-        return path;
-    };
+        for (var j = 0; j < value.length; j++) {
+          var segment = encode(value[j], token);
+          if (validate && !matches[i].test(segment)) {
+            throw new TypeError(
+              'Expected all "' +
+                token.name +
+                '" to match "' +
+                token.pattern +
+                '", but got "' +
+                segment +
+                '"'
+            );
+          }
+          path += token.prefix + segment + token.suffix;
+        }
+        continue;
+      }
+      if (typeof value === "string" || typeof value === "number") {
+        var segment = encode(String(value), token);
+        if (validate && !matches[i].test(segment)) {
+          throw new TypeError(
+            'Expected "' +
+              token.name +
+              '" to match "' +
+              token.pattern +
+              '", but got "' +
+              segment +
+              '"'
+          );
+        }
+        path += token.prefix + segment + token.suffix;
+        continue;
+      }
+      if (optional) continue;
+      var typeOfMessage = repeat ? "an array" : "a string";
+      throw new TypeError(
+        'Expected "' + token.name + '" to be ' + typeOfMessage
+      );
+    }
+    return path;
+  };
 }
 /**
  * Create path match function from `path-to-regexp` spec.
  */
 function match(str, options) {
-    var keys = [];
-    var re = pathToRegexp(str, keys, options);
-    return regexpToFunction(re, keys, options);
+  var keys = [];
+  var re = pathToRegexp(str, keys, options);
+  return regexpToFunction(re, keys, options);
 }
 /**
  * Create a path match function from `path-to-regexp` output.
  */
 function regexpToFunction(re, keys, options) {
-    if (options === void 0) { options = {}; }
-    var _a = options.decode, decode = _a === void 0 ? function (x) { return x; } : _a;
-    return function (pathname) {
-        var m = re.exec(pathname);
-        if (!m)
-            return false;
-        var path = m[0], index = m.index;
-        var params = Object.create(null);
-        var _loop_1 = function (i) {
-            // tslint:disable-next-line
-            if (m[i] === undefined)
-                return "continue";
-            var key = keys[i - 1];
-            if (key.modifier === "*" || key.modifier === "+") {
-                params[key.name] = m[i].split(key.prefix + key.suffix).map(function (value) {
-                    return decode(value, key);
-                });
-            }
-            else {
-                params[key.name] = decode(m[i], key);
-            }
-        };
-        for (var i = 1; i < m.length; i++) {
-            _loop_1(i);
-        }
-        return { path: path, index: index, params: params };
+  if (options === void 0) {
+    options = {};
+  }
+  var _a = options.decode,
+    decode =
+      _a === void 0
+        ? function (x) {
+            return x;
+          }
+        : _a;
+  return function (pathname) {
+    var m = re.exec(pathname);
+    if (!m) return false;
+    var path = m[0],
+      index = m.index;
+    var params = Object.create(null);
+    var _loop_1 = function (i) {
+      // tslint:disable-next-line
+      if (m[i] === undefined) return "continue";
+      var key = keys[i - 1];
+      if (key.modifier === "*" || key.modifier === "+") {
+        params[key.name] = m[i]
+          .split(key.prefix + key.suffix)
+          .map(function (value) {
+            return decode(value, key);
+          });
+      } else {
+        params[key.name] = decode(m[i], key);
+      }
     };
+    for (var i = 1; i < m.length; i++) {
+      _loop_1(i);
+    }
+    return { path: path, index: index, params: params };
+  };
 }
 /**
  * Escape a regular expression string.
  */
 function escapeString(str) {
-    return str.replace(/([.+*?=^!:${}()[\]|/\\])/g, "\\$1");
+  return str.replace(/([.+*?=^!:${}()[\]|/\\])/g, "\\$1");
 }
 /**
  * Get the flags for a regexp from the options.
  */
 function flags(options) {
-    return options && options.sensitive ? "" : "i";
+  return options && options.sensitive ? "" : "i";
 }
 /**
  * Pull out keys from a regexp.
  */
 function regexpToRegexp(path, keys) {
-    if (!keys)
-        return path;
-    // Use a negative lookahead to match only capturing groups.
-    var groups = path.source.match(/\((?!\?)/g);
-    if (groups) {
-        for (var i = 0; i < groups.length; i++) {
-            keys.push({
-                name: i,
-                prefix: "",
-                suffix: "",
-                modifier: "",
-                pattern: ""
-            });
-        }
+  if (!keys) return path;
+  // Use a negative lookahead to match only capturing groups.
+  var groups = path.source.match(/\((?!\?)/g);
+  if (groups) {
+    for (var i = 0; i < groups.length; i++) {
+      keys.push({
+        name: i,
+        prefix: "",
+        suffix: "",
+        modifier: "",
+        pattern: "",
+      });
     }
-    return path;
+  }
+  return path;
 }
 /**
  * Transform an array into a regexp.
  */
 function arrayToRegexp(paths, keys, options) {
-    var parts = paths.map(function (path) { return pathToRegexp(path, keys, options).source; });
-    return new RegExp("(?:" + parts.join("|") + ")", flags(options));
+  var parts = paths.map(function (path) {
+    return pathToRegexp(path, keys, options).source;
+  });
+  return new RegExp("(?:" + parts.join("|") + ")", flags(options));
 }
 /**
  * Create a path regexp from string input.
  */
 function stringToRegexp(path, keys, options) {
-    return tokensToRegexp(parse(path, options), keys, options);
+  return tokensToRegexp(parse(path, options), keys, options);
 }
 /**
  * Expose a function for taking tokens and returning a RegExp.
  */
 function tokensToRegexp(tokens, keys, options) {
-    if (options === void 0) { options = {}; }
-    var _a = options.strict, strict = _a === void 0 ? false : _a, _b = options.start, start = _b === void 0 ? true : _b, _c = options.end, end = _c === void 0 ? true : _c, _d = options.encode, encode = _d === void 0 ? function (x) { return x; } : _d;
-    var endsWith = "[" + escapeString(options.endsWith || "") + "]|$";
-    var delimiter = "[" + escapeString(options.delimiter || "/#?") + "]";
-    var route = start ? "^" : "";
-    // Iterate over the tokens and create our regexp string.
-    for (var _i = 0, tokens_1 = tokens; _i < tokens_1.length; _i++) {
-        var token = tokens_1[_i];
-        if (typeof token === "string") {
-            route += escapeString(encode(token));
+  if (options === void 0) {
+    options = {};
+  }
+  var _a = options.strict,
+    strict = _a === void 0 ? false : _a,
+    _b = options.start,
+    start = _b === void 0 ? true : _b,
+    _c = options.end,
+    end = _c === void 0 ? true : _c,
+    _d = options.encode,
+    encode =
+      _d === void 0
+        ? function (x) {
+            return x;
+          }
+        : _d;
+  var endsWith = "[" + escapeString(options.endsWith || "") + "]|$";
+  var delimiter = "[" + escapeString(options.delimiter || "/#?") + "]";
+  var route = start ? "^" : "";
+  // Iterate over the tokens and create our regexp string.
+  for (var _i = 0, tokens_1 = tokens; _i < tokens_1.length; _i++) {
+    var token = tokens_1[_i];
+    if (typeof token === "string") {
+      route += escapeString(encode(token));
+    } else {
+      var prefix = escapeString(encode(token.prefix));
+      var suffix = escapeString(encode(token.suffix));
+      if (token.pattern) {
+        if (keys) keys.push(token);
+        if (prefix || suffix) {
+          if (token.modifier === "+" || token.modifier === "*") {
+            var mod = token.modifier === "*" ? "?" : "";
+            route +=
+              "(?:" +
+              prefix +
+              "((?:" +
+              token.pattern +
+              ")(?:" +
+              suffix +
+              prefix +
+              "(?:" +
+              token.pattern +
+              "))*)" +
+              suffix +
+              ")" +
+              mod;
+          } else {
+            route +=
+              "(?:" +
+              prefix +
+              "(" +
+              token.pattern +
+              ")" +
+              suffix +
+              ")" +
+              token.modifier;
+          }
+        } else {
+          route += "(" + token.pattern + ")" + token.modifier;
         }
-        else {
-            var prefix = escapeString(encode(token.prefix));
-            var suffix = escapeString(encode(token.suffix));
-            if (token.pattern) {
-                if (keys)
-                    keys.push(token);
-                if (prefix || suffix) {
-                    if (token.modifier === "+" || token.modifier === "*") {
-                        var mod = token.modifier === "*" ? "?" : "";
-                        route += "(?:" + prefix + "((?:" + token.pattern + ")(?:" + suffix + prefix + "(?:" + token.pattern + "))*)" + suffix + ")" + mod;
-                    }
-                    else {
-                        route += "(?:" + prefix + "(" + token.pattern + ")" + suffix + ")" + token.modifier;
-                    }
-                }
-                else {
-                    route += "(" + token.pattern + ")" + token.modifier;
-                }
-            }
-            else {
-                route += "(?:" + prefix + suffix + ")" + token.modifier;
-            }
-        }
+      } else {
+        route += "(?:" + prefix + suffix + ")" + token.modifier;
+      }
     }
-    if (end) {
-        if (!strict)
-            route += delimiter + "?";
-        route += !options.endsWith ? "$" : "(?=" + endsWith + ")";
+  }
+  if (end) {
+    if (!strict) route += delimiter + "?";
+    route += !options.endsWith ? "$" : "(?=" + endsWith + ")";
+  } else {
+    var endToken = tokens[tokens.length - 1];
+    var isEndDelimited =
+      typeof endToken === "string"
+        ? delimiter.indexOf(endToken[endToken.length - 1]) > -1
+        : // tslint:disable-next-line
+          endToken === undefined;
+    if (!strict) {
+      route += "(?:" + delimiter + "(?=" + endsWith + "))?";
     }
-    else {
-        var endToken = tokens[tokens.length - 1];
-        var isEndDelimited = typeof endToken === "string"
-            ? delimiter.indexOf(endToken[endToken.length - 1]) > -1
-            : // tslint:disable-next-line
-                endToken === undefined;
-        if (!strict) {
-            route += "(?:" + delimiter + "(?=" + endsWith + "))?";
-        }
-        if (!isEndDelimited) {
-            route += "(?=" + delimiter + "|" + endsWith + ")";
-        }
+    if (!isEndDelimited) {
+      route += "(?=" + delimiter + "|" + endsWith + ")";
     }
-    return new RegExp(route, flags(options));
+  }
+  return new RegExp(route, flags(options));
 }
 /**
  * Normalize the given path string, returning a regular expression.
@@ -696,11 +770,9 @@ function tokensToRegexp(tokens, keys, options) {
  * contain `[{ name: 'id', delimiter: '/', optional: false, repeat: false }]`.
  */
 function pathToRegexp(path, keys, options) {
-    if (path instanceof RegExp)
-        return regexpToRegexp(path, keys);
-    if (Array.isArray(path))
-        return arrayToRegexp(path, keys, options);
-    return stringToRegexp(path, keys, options);
+  if (path instanceof RegExp) return regexpToRegexp(path, keys);
+  if (Array.isArray(path)) return arrayToRegexp(path, keys, options);
+  return stringToRegexp(path, keys, options);
 }
 
 /**
@@ -712,8 +784,8 @@ function pathToRegexp(path, keys, options) {
  * @param source
  */
 function matchPath(path, source) {
-    const matcher = match(source, { decode: decodeURIComponent });
-    return matcher(path);
+  const matcher = match(source, { decode: decodeURIComponent });
+  return matcher(path);
 }
 /**
  * Compile a destination for redirects or rewrites.
@@ -721,35 +793,36 @@ function matchPath(path, source) {
  * @param params
  */
 function compileDestination(destination, params) {
-    try {
-        const destinationLowerCase = destination.toLowerCase();
-        if (destinationLowerCase.startsWith("https://") ||
-            destinationLowerCase.startsWith("http://")) {
-            // Handle external URLs
-            const { origin, pathname } = new URL(destination);
-            const toPath = compile(pathname, { encode: encodeURIComponent });
-            const compiledDestination = `${origin}${toPath(params)}`;
-            // Remove trailing slash if original destination didn't have it
-            if (!destination.endsWith("/") && compiledDestination.endsWith("/")) {
-                return compiledDestination.slice(0, -1);
-            }
-            else {
-                return compiledDestination;
-            }
-        }
-        else {
-            // Handle all other paths. Escape all ? in case of query parameters
-            const escapedDestination = destination.replace(/\?/g, "\\?");
-            const toPath = compile(escapedDestination, {
-                encode: encodeURIComponent
-            });
-            return toPath(params);
-        }
+  try {
+    const destinationLowerCase = destination.toLowerCase();
+    if (
+      destinationLowerCase.startsWith("https://") ||
+      destinationLowerCase.startsWith("http://")
+    ) {
+      // Handle external URLs
+      const { origin, pathname } = new URL(destination);
+      const toPath = compile(pathname, { encode: encodeURIComponent });
+      const compiledDestination = `${origin}${toPath(params)}`;
+      // Remove trailing slash if original destination didn't have it
+      if (!destination.endsWith("/") && compiledDestination.endsWith("/")) {
+        return compiledDestination.slice(0, -1);
+      } else {
+        return compiledDestination;
+      }
+    } else {
+      // Handle all other paths. Escape all ? in case of query parameters
+      const escapedDestination = destination.replace(/\?/g, "\\?");
+      const toPath = compile(escapedDestination, {
+        encode: encodeURIComponent,
+      });
+      return toPath(params);
     }
-    catch (error) {
-        console.error(`Could not compile destination ${destination}, returning null instead. Error: ${error}`);
-        return null;
-    }
+  } catch (error) {
+    console.error(
+      `Could not compile destination ${destination}, returning null instead. Error: ${error}`
+    );
+    return null;
+  }
 }
 
 /**
@@ -758,21 +831,24 @@ function compileDestination(destination, params) {
  * @param routesManifest
  */
 function getRedirectPath(path, routesManifest) {
-    const redirects = routesManifest.redirects;
-    for (const redirect of redirects) {
-        const match = matchPath(path, redirect.source);
-        if (match) {
-            const compiledDestination = compileDestination(redirect.destination, match.params);
-            if (!compiledDestination) {
-                return null;
-            }
-            return {
-                redirectPath: compiledDestination,
-                statusCode: redirect.statusCode
-            };
-        }
+  const redirects = routesManifest.redirects;
+  for (const redirect of redirects) {
+    const match = matchPath(path, redirect.source);
+    if (match) {
+      const compiledDestination = compileDestination(
+        redirect.destination,
+        match.params
+      );
+      if (!compiledDestination) {
+        return null;
+      }
+      return {
+        redirectPath: compiledDestination,
+        statusCode: redirect.statusCode,
+      };
     }
-    return null;
+  }
+  return null;
 }
 /**
  * Create a redirect response with the given status code for CloudFront.
@@ -781,31 +857,32 @@ function getRedirectPath(path, routesManifest) {
  * @param statusCode
  */
 function createRedirectResponse(uri, querystring, statusCode) {
-    const location = querystring ? `${uri}?${querystring}` : uri;
-    const status = statusCode.toString();
-    const statusDescription = http.STATUS_CODES[status];
-    const refresh = statusCode === 308
-        ? [
-            // Required for IE11 compatibility
-            {
-                key: "Refresh",
-                value: `0;url=${location}`
-            }
+  const location = querystring ? `${uri}?${querystring}` : uri;
+  const status = statusCode.toString();
+  const statusDescription = http.STATUS_CODES[status];
+  const refresh =
+    statusCode === 308
+      ? [
+          // Required for IE11 compatibility
+          {
+            key: "Refresh",
+            value: `0;url=${location}`,
+          },
         ]
-        : [];
-    return {
-        status: status,
-        statusDescription: statusDescription,
-        headers: {
-            location: [
-                {
-                    key: "Location",
-                    value: location
-                }
-            ],
-            refresh: refresh
-        }
-    };
+      : [];
+  return {
+    status: status,
+    statusDescription: statusDescription,
+    headers: {
+      location: [
+        {
+          key: "Location",
+          value: location,
+        },
+      ],
+      refresh: refresh,
+    },
+  };
 }
 /**
  * Get a domain redirect such as redirecting www to non-www domain.
@@ -813,15 +890,15 @@ function createRedirectResponse(uri, querystring, statusCode) {
  * @param buildManifest
  */
 function getDomainRedirectPath(request, buildManifest) {
-    const hostHeaders = request.headers["host"];
-    if (hostHeaders && hostHeaders.length > 0) {
-        const host = hostHeaders[0].value;
-        const domainRedirects = buildManifest.domainRedirects;
-        if (domainRedirects && domainRedirects[host]) {
-            return `${domainRedirects[host]}${request.uri}`;
-        }
+  const hostHeaders = request.headers["host"];
+  if (hostHeaders && hostHeaders.length > 0) {
+    const host = hostHeaders[0].value;
+    const domainRedirects = buildManifest.domainRedirects;
+    if (domainRedirects && domainRedirects[host]) {
+      return `${domainRedirects[host]}${request.uri}`;
     }
-    return null;
+  }
+  return null;
 }
 
 /**
@@ -830,104 +907,111 @@ function getDomainRedirectPath(request, buildManifest) {
  * @param routesManifest
  */
 function getRewritePath(path, routesManifest) {
-    const rewrites = routesManifest.rewrites;
-    for (const rewrite of rewrites) {
-        const match = matchPath(path, rewrite.source);
-        if (match) {
-            return compileDestination(rewrite.destination, match.params);
-        }
+  const rewrites = routesManifest.rewrites;
+  for (const rewrite of rewrites) {
+    const match = matchPath(path, rewrite.source);
+    if (match) {
+      return compileDestination(rewrite.destination, match.params);
     }
-    return null;
+  }
+  return null;
 }
 
 function addHeadersToResponse(path, response, routesManifest) {
-    // Add custom headers to response
-    if (response.headers) {
-        for (const headerData of routesManifest.headers) {
-            const match = matchPath(path, headerData.source);
-            if (match) {
-                for (const header of headerData.headers) {
-                    if (header.key && header.value) {
-                        const headerLowerCase = header.key.toLowerCase();
-                        response.headers[headerLowerCase] = [
-                            {
-                                key: headerLowerCase,
-                                value: header.value
-                            }
-                        ];
-                    }
-                }
-            }
+  // Add custom headers to response
+  if (response.headers) {
+    for (const headerData of routesManifest.headers) {
+      const match = matchPath(path, headerData.source);
+      if (match) {
+        for (const header of headerData.headers) {
+          if (header.key && header.value) {
+            const headerLowerCase = header.key.toLowerCase();
+            response.headers[headerLowerCase] = [
+              {
+                key: headerLowerCase,
+                value: header.value,
+              },
+            ];
+          }
         }
+      }
     }
+  }
 }
 
 // @ts-ignore
-const basePath = RoutesManifestJson__default['default'].basePath;
+const basePath = RoutesManifestJson__default["default"].basePath;
 const normaliseUri = (uri) => {
-    if (uri.startsWith(basePath)) {
-        uri = uri.slice(basePath.length);
-    }
-    return uri;
+  if (uri.startsWith(basePath)) {
+    uri = uri.slice(basePath.length);
+  }
+  return uri;
 };
 const router = (manifest) => {
-    const { apis: { dynamic, nonDynamic } } = manifest;
-    return (path) => {
-        if (basePath && path.startsWith(basePath))
-            path = path.slice(basePath.length);
-        if (nonDynamic[path]) {
-            return nonDynamic[path];
-        }
-        for (const route in dynamic) {
-            const { file, regex } = dynamic[route];
-            const re = new RegExp(regex, "i");
-            const pathMatchesRoute = re.test(path);
-            if (pathMatchesRoute) {
-                return file;
-            }
-        }
-        return null;
-    };
+  const {
+    apis: { dynamic, nonDynamic },
+  } = manifest;
+  return (path) => {
+    if (basePath && path.startsWith(basePath))
+      path = path.slice(basePath.length);
+    if (nonDynamic[path]) {
+      return nonDynamic[path];
+    }
+    for (const route in dynamic) {
+      const { file, regex } = dynamic[route];
+      const re = new RegExp(regex, "i");
+      const pathMatchesRoute = re.test(path);
+      if (pathMatchesRoute) {
+        return file;
+      }
+    }
+    return null;
+  };
 };
 const handler$1 = async (event) => {
-    const request = event.Records[0].cf.request;
-    const routesManifest = RoutesManifestJson__default['default'];
-    const buildManifest = manifest__default['default'];
-    // Handle domain redirects e.g www to non-www domain
-    const domainRedirect = getDomainRedirectPath(request, buildManifest);
-    if (domainRedirect) {
-        return createRedirectResponse(domainRedirect, request.querystring, 308);
+  const request = event.Records[0].cf.request;
+  const routesManifest = RoutesManifestJson__default["default"];
+  const buildManifest = manifest__default["default"];
+  // Handle domain redirects e.g www to non-www domain
+  const domainRedirect = getDomainRedirectPath(request, buildManifest);
+  if (domainRedirect) {
+    return createRedirectResponse(domainRedirect, request.querystring, 308);
+  }
+  // Handle custom redirects
+  const customRedirect = getRedirectPath(request.uri, routesManifest);
+  if (customRedirect) {
+    return createRedirectResponse(
+      customRedirect.redirectPath,
+      request.querystring,
+      customRedirect.statusCode
+    );
+  }
+  // Handle custom rewrites but not for non-dynamic routes
+  let isNonDynamicRoute =
+    buildManifest.apis.nonDynamic[normaliseUri(request.uri)];
+  if (!isNonDynamicRoute) {
+    const customRewrite = getRewritePath(request.uri, routesManifest);
+    if (customRewrite) {
+      request.uri = customRewrite;
     }
-    // Handle custom redirects
-    const customRedirect = getRedirectPath(request.uri, routesManifest);
-    if (customRedirect) {
-        return createRedirectResponse(customRedirect.redirectPath, request.querystring, customRedirect.statusCode);
-    }
-    // Handle custom rewrites but not for non-dynamic routes
-    let isNonDynamicRoute = buildManifest.apis.nonDynamic[normaliseUri(request.uri)];
-    if (!isNonDynamicRoute) {
-        const customRewrite = getRewritePath(request.uri, routesManifest);
-        if (customRewrite) {
-            request.uri = customRewrite;
-        }
-    }
-    const uri = normaliseUri(request.uri);
-    const pagePath = router(manifest__default['default'])(uri);
-    if (!pagePath) {
-        return {
-            status: "404"
-        };
-    }
-    // eslint-disable-next-line
-    const page = require(`./${pagePath}`);
-    const { req, res, responsePromise } = nextAwsCloudfront(event.Records[0].cf, {
-        enableHTTPCompression: buildManifest.enableHTTPCompression
-    });
-    page.default(req, res);
-    const response = await responsePromise;
-    // Add custom headers before returning response
-    addHeadersToResponse(request.uri, response, routesManifest);
-    return response;
+  }
+  const uri = normaliseUri(request.uri);
+  const pagePath = router(manifest__default["default"])(uri);
+  if (!pagePath) {
+    return {
+      status: "404",
+    };
+  }
+  // eslint-disable-next-line
+  const page = require(`./${pagePath}`);
+  const { req, res, responsePromise } = nextAwsCloudfront(event.Records[0].cf, {
+    enableHTTPCompression: buildManifest.enableHTTPCompression,
+  });
+  page.default(req, res);
+  const response = await responsePromise;
+  // Add custom headers before returning response
+  addHeadersToResponse(request.uri, response, routesManifest);
+  return response;
 };
 
 exports.handler = handler$1;

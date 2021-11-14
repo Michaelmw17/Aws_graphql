@@ -1,1 +1,17 @@
-{"pageProps":{"post":{"id":"47404703-1103-4357-a92b-f2eab5c6240f","title":"title","category":"auth","countries":"USA","select":"Weather","date":"2021-11-25T13:00:00.000Z","createdAt":"2021-11-12T00:21:26.197Z","content":"# header","username":"random","updatedAt":"2021-11-12T00:21:43.663Z"}},"__N_SSG":true}
+{
+  "pageProps": {
+    "post": {
+      "id": "47404703-1103-4357-a92b-f2eab5c6240f",
+      "title": "title",
+      "category": "auth",
+      "countries": "USA",
+      "select": "Weather",
+      "date": "2021-11-25T13:00:00.000Z",
+      "createdAt": "2021-11-12T00:21:26.197Z",
+      "content": "# header",
+      "username": "random",
+      "updatedAt": "2021-11-12T00:21:43.663Z"
+    }
+  },
+  "__N_SSG": true
+}

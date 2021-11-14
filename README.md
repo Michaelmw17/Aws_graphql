@@ -1,11 +1,12 @@
 # Aws_graphql
+
 ### Overview
 
 [Link to Website](https://d4j1nk8d40kdh.cloudfront.net/)
 
 We'll start from scratch, creating a new Next.js app. We'll then, step by step, use the [Amplify CLI](https://github.com/aws-amplify/amplify-cli) to build out and configure our cloud infrastructure and then use the [Amplify JS Libraries](https://github.com/aws-amplify/amplify-js) to connect the Next.js app to the APIs we create using the CLI.
 
-The app will be a 3 page multi-user blog post application. The app we will displaying a list of posts with data like the title, content, and author of the post. 
+The app will be a 3 page multi-user blog post application. The app we will displaying a list of posts with data like the title, content, and author of the post.
 
 ### Table of Contents
 
@@ -20,9 +21,7 @@ The app will be a 3 page multi-user blog post application. The app we will displ
 
 ### Environment & prerequisites
 
-
-Using [Bash shell](https://en.wikipedia.org/wiki/Bash_(Unix_shell)) to run Amplify CLI commands nd also to run a local version of the Next.js app.
-
+Using [Bash shell](<https://en.wikipedia.org/wiki/Bash_(Unix_shell)>) to run Amplify CLI commands nd also to run a local version of the Next.js app.
 
 ## Getting Started - Creating the Next.js Application
 
@@ -51,7 +50,7 @@ Create the necessary Tailwind configuration files:
 npx tailwindcss init -p
 ```
 
-Update __tailwind.config.js__ to add the Tailwind `typography` plugin to the array of plugins:
+Update **tailwind.config.js** to add the Tailwind `typography` plugin to the array of plugins:
 
 ```js
 plugins: [
@@ -59,7 +58,7 @@ plugins: [
 ],
 ```
 
-Within __styles/globals.css__ add:
+Within **styles/globals.css** add:
 
 ```css
 @tailwind base;
@@ -82,15 +81,14 @@ curl -sL https://aws-amplify.github.io/amplify-cli/install | bash && $SHELL
 
 Configure the CLI with our credentials.
 
-
 ```sh
 $ amplify configure
 
 - Specify the AWS Region: ap-southeast-2
 - Specify the username of the new IAM user: amplify-cli-user
 > In the AWS Console, click Next: Permissions, Next: Tags, Next: Review, & Create User to create the new IAM user. Then return to the command line & press Enter.
-- Enter the access key of the newly created user:   
-? accessKeyId: (<ACCESS_KEY_ID>)  
+- Enter the access key of the newly created user:
+? accessKeyId: (<ACCESS_KEY_ID>)
 ? secretAccessKey: (<SECRET_ACCESS_KEY>)
 - Profile Name: amplify-cli-user
 ```
@@ -114,7 +112,7 @@ $ amplify init
 - Please choose the profile you want to use: amplify-cli-user (or your preferred profile)
 ```
 
-The Amplify CLI has initialized a new project & you will see a new folder: __amplify__ & a new file called `aws-exports.js` in the root directory. These files hold your project configuration.
+The Amplify CLI has initialized a new project & you will see a new folder: **amplify** & a new file called `aws-exports.js` in the root directory. These files hold your project configuration.
 
 To view the status of the amplify project at any time, you can run the Amplify `status` command:
 
@@ -141,16 +139,16 @@ $ amplify add api
 ? Enter a description for the API key: public
 ? After how many days from now the API key should expire (1-365): 365 (or your preferred expiration)
 ? Do you want to configure advanced settings for the GraphQL API: No
-? Do you have an annotated GraphQL schema? N 
+? Do you have an annotated GraphQL schema? N
 ? Choose a schema template: Single object with fields
 ? Do you want to edit the schema now? (Y/n) Y
 ```
 
 The CLI should open this GraphQL schema in vscode
 
-__amplify/backend/api/NextBlog/schema.graphql__
+**amplify/backend/api/NextBlog/schema.graphql**
 
-Update the schema to the following:   
+Update the schema to the following:
 
 ```graphql
 type Post @model {
@@ -191,14 +189,11 @@ $ amplify console api
 > Choose GraphQL
 ```
 
-In the AppSync dashboard, click on __Queries__ to open the GraphiQL editor. In the editor, create a new post with the following mutation:
+In the AppSync dashboard, click on **Queries** to open the GraphiQL editor. In the editor, create a new post with the following mutation:
 
 ```graphql
 mutation createPost {
-  createPost(input: {
-    title: "My First Post"
-    content: "Aws world"
-  }) {
+  createPost(input: { title: "My First Post", content: "Aws world" }) {
     id
     title
     content
@@ -226,24 +221,24 @@ Now, the API is created & we can test it out in our application
 
 The first thing we need to do is to configure our Next.js app to be aware of our Amplify project. We can do this by referencing the auto-generated `aws-exports.js` file that was created by the CLI.
 
-Create a new file called __configureAmplify.js__ in the root of the project and add the following code:
-
+Create a new file called **configureAmplify.js** in the root of the project and add the following code:
 
 ```js
-import Amplify from 'aws-amplify'
-import config from './aws-exports'
-Amplify.configure(config)
+import Amplify from "aws-amplify";
+import config from "./aws-exports";
+Amplify.configure(config);
 ```
 
-Open __pages/\_app.js__ and import the Amplify configuration below the last import:
+Open **pages/\_app.js** and import the Amplify configuration below the last import:
 
 ```js
-import '../configureAmplify'
+import "../configureAmplify";
 ```
 
 Now, our app is ready to start using our AWS services.
 
 ## Development server
+
 Deployed to [https://d4j1nk8d40kdh.cloudfront.net/](https://d4j1nk8d40kdh.cloudfront.net/)
 
 First, run the development server:
@@ -261,7 +256,6 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 [API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
 
 ## Learn More
 

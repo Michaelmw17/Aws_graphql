@@ -1,1 +1,17 @@
-{"pageProps":{"post":{"id":"a76618c7-1713-41c4-bcb6-10d228e0242c","title":"11th","category":"Auth 11","countries":"USA","select":"News","date":"2021-11-10T13:00:00.000Z","createdAt":"2021-11-10T09:03:57.432Z","content":"*11th*","username":"random","updatedAt":"2021-11-10T09:04:17.208Z"}},"__N_SSG":true}
+{
+  "pageProps": {
+    "post": {
+      "id": "a76618c7-1713-41c4-bcb6-10d228e0242c",
+      "title": "11th",
+      "category": "Auth 11",
+      "countries": "USA",
+      "select": "News",
+      "date": "2021-11-10T13:00:00.000Z",
+      "createdAt": "2021-11-10T09:03:57.432Z",
+      "content": "*11th*",
+      "username": "random",
+      "updatedAt": "2021-11-10T09:04:17.208Z"
+    }
+  },
+  "__N_SSG": true
+}

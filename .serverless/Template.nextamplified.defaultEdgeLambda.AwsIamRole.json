@@ -1,10 +1,7 @@
 {
   "name": "ineysga-dojap88",
   "arn": "arn:aws:iam::951828171550:role/ineysga-dojap88",
-  "service": [
-    "edgelambda.amazonaws.com",
-    "lambda.amazonaws.com"
-  ],
+  "service": ["edgelambda.amazonaws.com", "lambda.amazonaws.com"],
   "policy": {
     "Version": "2012-10-17",
     "Statement": [
@@ -20,10 +17,7 @@
       {
         "Effect": "Allow",
         "Resource": "arn:aws:s3:::ineysga-q1oeiv/*",
-        "Action": [
-          "s3:GetObject",
-          "s3:PutObject"
-        ]
+        "Action": ["s3:GetObject", "s3:PutObject"]
       }
     ]
   },

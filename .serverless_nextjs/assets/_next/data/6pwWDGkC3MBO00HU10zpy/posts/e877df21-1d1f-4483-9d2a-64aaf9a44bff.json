@@ -1,1 +1,17 @@
-{"pageProps":{"post":{"id":"e877df21-1d1f-4483-9d2a-64aaf9a44bff","title":"Main","category":"testing error","countries":"Europe","select":"Other","date":"2021-12-30T13:00:00.000Z","createdAt":"2021-11-11T06:35:25.591Z","content":"# header","username":"random","updatedAt":"2021-11-11T07:01:59.841Z"}},"__N_SSG":true}
+{
+  "pageProps": {
+    "post": {
+      "id": "e877df21-1d1f-4483-9d2a-64aaf9a44bff",
+      "title": "Main",
+      "category": "testing error",
+      "countries": "Europe",
+      "select": "Other",
+      "date": "2021-12-30T13:00:00.000Z",
+      "createdAt": "2021-11-11T06:35:25.591Z",
+      "content": "# header",
+      "username": "random",
+      "updatedAt": "2021-11-11T07:01:59.841Z"
+    }
+  },
+  "__N_SSG": true
+}
