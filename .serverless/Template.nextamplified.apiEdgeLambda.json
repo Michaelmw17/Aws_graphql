@@ -1,6 +1,6 @@
 {
   "name": "ineysga-mzbdjc",
-  "hash": "BC94GQBIoWQcwZtZi0OWsypFO9TWLBZ0KtSpABvn+bY=",
+  "hash": "uUu71Cx5gSzTvszAzp55ln9W2gB4gHAqo3k8lnywsew=",
   "description": "API Lambda@Edge for Next CloudFront distribution",
   "memory": 512,
   "timeout": 10,

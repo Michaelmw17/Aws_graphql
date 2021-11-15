@@ -136,24 +136,16 @@ const TestApp = ({ classes }) => {
                       User date created at: <br />
                       {new Date(post.date).toDateString()}
                     </time>
-
-                    <br />
-                    <Link href={`/edit-post/${post.id}`}>
-                      <a className="text-sm mr-4 text-blue-500">Edit Post</a>
-                    </Link>
-                    <Link href={`/posts/${post.id}`}>
-                      <a className="text-sm mr-4 text-blue-500">View Post</a>
-                    </Link>
-                    <button
-                      className="text-sm mr-4 text-red-500 bm-4"
-                      onClick={() => deletePost(post.id)}
-                    >
-                      Delete Post
-                    </button>
                   </div>
                 </div>
               </div>
             </ReactCardFlipper>
+            <div className="text-xl font-semibold  mt-0 text-center text-center">
+              <br />
+              <Link href={`/posts/${post.id}`}>
+                <a className="text-sm mr-4 text-blue-500">View Post</a>
+              </Link>
+            </div>
           </div>
         </Link>
       ))}

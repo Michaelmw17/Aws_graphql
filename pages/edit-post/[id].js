@@ -47,7 +47,7 @@ function EditPost() {
   }
   return (
     <div>
-      <h1 className="text-3xl font-semibold tracking-wide mt-6 mb-2">
+      <h1 className="text-3xl font-semibold tracking-wide mt-36 mb-2">
         Edit post
       </h1>
       <input
